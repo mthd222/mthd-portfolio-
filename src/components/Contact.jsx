@@ -16,7 +16,7 @@ const CHANNELS = [
   },
   {
     label: 'LINKEDIN',
-    value: 'linkedin.com/in/mthd22',
+    value: 'linkedin.com/in/mthd222',
     href: profile.linkedin,
     icon: 'in',
   },

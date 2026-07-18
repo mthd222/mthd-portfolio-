@@ -61,7 +61,7 @@ function HexShield() {
         <rect x="58" y="78" width="84" height="60" rx="6" fill="rgba(3,7,6,0.95)" stroke="rgba(0,255,156,0.6)" strokeWidth="1.5" />
         <text x="66" y="100" fontFamily="monospace" fontSize="13" fill="#00ff9c">&gt; whoami</text>
         <text x="66" y="120" fontFamily="monospace" fontSize="13" fill="#00d4ff">
-          milan_tej
+          milan_tej_hd
           <tspan fill="#00ff9c">_</tspan>
         </text>
         {/* lock */}
