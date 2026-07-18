@@ -5,6 +5,8 @@ export const profile = {
   phone: '+91 8050675711',
   email: 'milantej02@gmail.com',
   linkedin: 'https://linkedin.com/in/mthd22',
+  github: 'https://github.com/mthd222',
+  whatsapp: 'https://wa.me/918050675711',
   summary:
     'Cybersecurity intern and VAPT specialist with hands-on experience across SOC operations, threat detection engineering, and offensive security testing. Currently building and operating a SOC lab using Wazuh at Netcradus Pvt Ltd, developing internal security tools, and contributing to an XDR solution. Published security researcher (IJRASET) with expertise in threat modelling, secure system design, and structured vulnerability report writing.',
   availability: 'Immediately available — open to on-site, remote, or hybrid roles.',

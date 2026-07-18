@@ -7,6 +7,7 @@ import Skills from './components/Skills.jsx'
 import Experience from './components/Experience.jsx'
 import Projects from './components/Projects.jsx'
 import Research from './components/Research.jsx'
+import Education from './components/Education.jsx'
 import Terminal from './components/Terminal.jsx'
 import Contact from './components/Contact.jsx'
 import { profile } from './data/resume.js'
@@ -29,6 +30,7 @@ export default function App() {
           <Experience />
           <Projects />
           <Research />
+          <Education />
           <Terminal />
           <Contact />
         </main>

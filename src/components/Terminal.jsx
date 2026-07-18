@@ -5,8 +5,18 @@ import {
   education, certifications, interests,
 } from '../data/resume.js'
 
+function triggerResumeDownload() {
+  const a = document.createElement('a')
+  a.href = '/Milan_Tej_Resume.pdf'
+  a.download = 'Milan_Tej_Resume.pdf'
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+}
+
 const HELP = [
   ['help', 'list all available commands'],
+  ['resume', 'download the full resume (PDF)'],
   ['whoami', 'identity check'],
   ['skills', 'dump the skill matrix'],
   ['projects', 'list security projects'],
@@ -74,8 +84,9 @@ function runCommand(raw) {
     case 'contact':
       return [
         { text: `email:    ${profile.email}`, cls: 'text-cyber' },
-        { text: `phone:    ${profile.phone}`, cls: 'text-cyber' },
+        { text: `whatsapp: ${profile.whatsapp}`, cls: 'text-cyber' },
         { text: `linkedin: ${profile.linkedin}`, cls: 'text-cyber' },
+        { text: `github:   ${profile.github}`, cls: 'text-cyber' },
       ]
     case 'ls':
       return [{ text: 'resume.pdf  exploits/  soc_lab/  flags.txt  .secrets', cls: 'text-mist' }]
@@ -84,9 +95,20 @@ function runCommand(raw) {
         return [{ text: 'flag{y0u_f0und_th3_h1dd3n_fl4g_n0w_h1r3_m1l4n}', cls: 'text-neon font-bold' }]
       if (args[0] === '.secrets')
         return [{ text: 'Permission denied. Nice try though — I respect the enumeration.', cls: 'text-danger' }]
-      if (args[0] === 'resume.pdf')
-        return [{ text: 'Binary file. Use the contact section to request the full resume.', cls: 'text-mist' }]
+      if (args[0] === 'resume.pdf') {
+        triggerResumeDownload()
+        return [{ text: 'Binary file — dispatching download instead ... ✔', cls: 'text-neon' }]
+      }
       return [{ text: `cat: ${args[0] || ''}: No such file or directory`, cls: 'text-danger' }]
+    case 'resume':
+    case 'download':
+    case 'wget':
+      triggerResumeDownload()
+      return [
+        { text: 'wget https://milantej.dev/Milan_Tej_Resume.pdf', cls: 'text-mist' },
+        { text: 'Milan_Tej_Resume.pdf         100%[==================>] 164K', cls: 'text-neon' },
+        { text: "'Milan_Tej_Resume.pdf' saved — check your downloads folder.", cls: 'text-cyber' },
+      ]
     case 'nmap':
       return [
         { text: 'Starting Nmap 7.95 ( https://nmap.org )', cls: 'text-mist' },

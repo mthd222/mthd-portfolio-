@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Logo from './Logo.jsx'
 
 const LINKS = [
   ['~/about', '#about'],
@@ -7,6 +8,7 @@ const LINKS = [
   ['~/experience', '#experience'],
   ['~/projects', '#projects'],
   ['~/research', '#research'],
+  ['~/education', '#education'],
   ['~/terminal', '#terminal'],
   ['~/contact', '#contact'],
 ]
@@ -31,13 +33,8 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
-        <a href="#top" className="group flex items-center gap-2 font-mono text-sm font-bold">
-          <span className="flex h-8 w-8 items-center justify-center border border-neon/60 text-neon transition group-hover:bg-neon/10">
-            MT
-          </span>
-          <span className="hidden text-mist sm:inline">
-            root@milantej<span className="text-neon">:~$</span>
-          </span>
+        <a href="#top" className="group transition hover:drop-shadow-[0_0_10px_rgba(0,255,156,0.4)]">
+          <Logo className="h-11 w-auto" />
         </a>
 
         <ul className="hidden items-center gap-1 font-mono text-[13px] md:flex">

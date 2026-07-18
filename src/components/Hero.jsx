@@ -152,6 +152,13 @@ export default function Hero() {
             >
               &gt;_ open terminal
             </a>
+            <a
+              href="/Milan_Tej_Resume.pdf"
+              download="Milan_Tej_Resume.pdf"
+              className="border border-amber/40 px-6 py-3 text-amber/90 transition hover:border-amber/70 hover:bg-amber/10 hover:text-amber"
+            >
+              ⭳ wget resume.pdf
+            </a>
           </motion.div>
         </div>
 
