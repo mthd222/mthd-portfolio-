@@ -2,7 +2,6 @@ export const profile = {
   name: 'MILAN TEJ H D',
   roles: ['Penetration Tester', 'VAPT Specialist', 'SOC Analyst', 'XDR Developer', 'Security Researcher'],
   location: 'Bengaluru, India',
-  phone: '+91 8050675711',
   email: 'milantej02@gmail.com',
   linkedin: 'https://linkedin.com/in/mthd22',
   github: 'https://github.com/mthd222',
