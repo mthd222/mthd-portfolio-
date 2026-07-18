@@ -3,7 +3,7 @@ export const profile = {
   roles: ['Penetration Tester', 'VAPT Specialist', 'SOC Analyst', 'XDR Developer', 'Security Researcher'],
   location: 'Bengaluru, India',
   email: 'milantej02@gmail.com',
-  linkedin: 'https://linkedin.com/in/mthd22',
+  linkedin: 'https://linkedin.com/in/mthd222',
   github: 'https://github.com/mthd222',
   whatsapp: 'https://wa.me/918050675711',
   summary:
