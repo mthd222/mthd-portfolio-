@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import MatrixRain from './MatrixRain.jsx'
 import { profile } from '../data/resume.js'
@@ -84,6 +84,16 @@ function HexShield() {
 
 export default function Hero() {
   const typed = useTypewriter(profile.roles)
+  const nameRef = useRef(null)
+
+  // brief glitch burst on the name every few seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nameRef.current?.classList.add('glitch-auto')
+      setTimeout(() => nameRef.current?.classList.remove('glitch-auto'), 380)
+    }, 4200)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
@@ -103,6 +113,7 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1
+            ref={nameRef}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45 }}

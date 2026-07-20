@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import BootLoader from './components/BootLoader.jsx'
+import { ScrollProgress, CursorFx, BackToTop } from './components/Fx.jsx'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
@@ -20,6 +21,9 @@ export default function App() {
       {!booted && <BootLoader onDone={() => setBooted(true)} />}
 
       <div className="cyber-grid pointer-events-none fixed inset-0 z-0" />
+      <ScrollProgress />
+      <CursorFx />
+      <BackToTop />
 
       <div className="relative z-10">
         <Navbar />

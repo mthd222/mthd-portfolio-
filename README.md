@@ -33,9 +33,25 @@ npm run preview  # preview the production build
 - **Vercel / Netlify** — import the repo, framework preset "Vite", build command `npm run build`, output `dist`
 - **GitHub Pages** — build and push `dist/` (set `base` in `vite.config.js` if hosted under a sub-path)
 
-## Editing content
+## Editing content — no code needed
 
-All resume content lives in one file: [`src/data/resume.js`](src/data/resume.js).
-Update roles, skills, projects, experience, contact info there — no component changes needed.
+Run the visual editor:
+
+```bash
+npm run edit     # opens http://localhost:5173/admin
+```
+
+Edit any section (profile, skills, projects, experience, education, certs...) through
+forms, click **save changes**, and the site updates instantly. Behind the scenes it
+writes to [`src/data/resume.json`](src/data/resume.json) — the single source of truth.
+
+To publish the changes to the live site, commit and push (your host redeploys automatically):
+
+```bash
+git add -A && git commit -m "update content" && git push
+```
+
+The `/admin` editor only exists on your machine during `npm run dev` / `npm run edit` —
+it is stripped from production builds, so visitors can never reach it.
 
 Theme colors and fonts are defined in [`src/index.css`](src/index.css) under `@theme`.

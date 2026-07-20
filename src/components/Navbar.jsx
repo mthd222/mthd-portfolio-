@@ -16,11 +16,29 @@ const LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // scrollspy: highlight the nav link of the section currently on screen
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`)
+        }
+      },
+      { rootMargin: '-40% 0px -55% 0px' },
+    )
+    LINKS.forEach(([, href]) => {
+      const el = document.querySelector(href)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -42,7 +60,9 @@ export default function Navbar() {
             <li key={href}>
               <a
                 href={href}
-                className="rounded px-2.5 py-1.5 text-mist transition hover:bg-neon/10 hover:text-neon"
+                className={`rounded px-2.5 py-1.5 transition hover:bg-neon/10 hover:text-neon ${
+                  activeSection === href ? 'bg-neon/10 text-neon' : 'text-mist'
+                }`}
               >
                 {label}
               </a>

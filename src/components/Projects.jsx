@@ -7,6 +7,22 @@ const SEVERITY_STYLES = {
   MEDIUM: 'border-cyber/60 text-cyber bg-cyber/10',
 }
 
+/* subtle 3D tilt following the cursor */
+function tiltMove(e) {
+  const el = e.currentTarget
+  const rect = el.getBoundingClientRect()
+  const px = (e.clientX - rect.left) / rect.width - 0.5
+  const py = (e.clientY - rect.top) / rect.height - 0.5
+  el.style.transition = 'transform 0.08s ease-out'
+  el.style.transform = `perspective(900px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 7).toFixed(2)}deg) translateY(-3px)`
+}
+
+function tiltReset(e) {
+  const el = e.currentTarget
+  el.style.transition = ''
+  el.style.transform = ''
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="relative mx-auto max-w-6xl px-5 py-24">
@@ -15,7 +31,11 @@ export default function Projects() {
       <div className="grid gap-6 lg:grid-cols-2">
         {projects.map((project, i) => (
           <Reveal key={project.name} delay={(i % 2) * 0.1}>
-            <article className="neon-card corner-brackets flex h-full flex-col p-6">
+            <article
+              onMouseMove={tiltMove}
+              onMouseLeave={tiltReset}
+              className="neon-card corner-brackets flex h-full flex-col p-6"
+            >
               <div className="mb-3 flex items-start justify-between gap-3">
                 <h3 className="font-display text-lg font-bold leading-snug text-ghost">
                   {project.name}
