@@ -48,7 +48,7 @@ function runCommand(raw) {
     case 'whoami':
       return [
         { text: profile.name, cls: 'text-neon font-bold' },
-        { text: 'Penetration Tester | VAPT Specialist | SOC & XDR', cls: 'text-cyber' },
+        { text: 'Cyber Security Intern | SOC & XDR | Aspiring VAPT & Penetration Tester', cls: 'text-cyber' },
         { text: `Location: ${profile.location}`, cls: 'text-mist' },
         { text: 'Clearance: OWASP Top 10 — full coverage', cls: 'text-mist' },
       ]

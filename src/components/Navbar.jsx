@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Logo from './Logo.jsx'
 
 const LINKS = [
@@ -72,28 +72,46 @@ export default function Navbar() {
 
         <button
           onClick={() => setOpen(!open)}
-          className="font-mono text-neon md:hidden"
+          className="relative z-10 font-mono text-neon md:hidden"
           aria-label="Toggle menu"
+          aria-expanded={open}
         >
-          {open ? '[x]' : '[≡]'}
+          <motion.span animate={{ rotate: open ? 90 : 0 }} className="inline-block">
+            {open ? '[x]' : '[≡]'}
+          </motion.span>
         </button>
       </nav>
 
-      {open && (
-        <ul className="border-t border-line bg-void/95 px-5 py-3 font-mono text-sm backdrop-blur-md md:hidden">
-          {LINKS.map(([label, href]) => (
-            <li key={href}>
-              <a
-                href={href}
-                onClick={() => setOpen(false)}
-                className="block py-2 text-mist transition hover:text-neon"
+      <AnimatePresence>
+        {open && (
+          <motion.ul
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: 'easeInOut' }}
+            className="overflow-hidden border-t border-line bg-void/95 font-mono text-sm backdrop-blur-md md:hidden"
+          >
+            {LINKS.map(([label, href], i) => (
+              <motion.li
+                key={href}
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.04 }}
               >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+                <a
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  className={`block px-5 py-2.5 transition hover:bg-neon/10 hover:text-neon ${
+                    activeSection === href ? 'text-neon' : 'text-mist'
+                  }`}
+                >
+                  {label}
+                </a>
+              </motion.li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </motion.header>
   )
 }

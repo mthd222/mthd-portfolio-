@@ -125,13 +125,17 @@ export default function Skills() {
                   {group.title}
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
-                  {group.skills.map((skill) => (
-                    <span
+                  {group.skills.map((skill, si) => (
+                    <motion.span
                       key={skill}
-                      className="border border-line bg-panel px-2 py-1 font-mono text-[11.5px] text-mist transition hover:border-neon/50 hover:text-neon"
+                      initial={{ opacity: 0, y: 6 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: '-40px' }}
+                      transition={{ delay: si * 0.035 }}
+                      className="border border-line bg-panel px-2 py-1 font-mono text-[11.5px] text-mist transition hover:border-neon/50 hover:text-neon hover:shadow-neon"
                     >
                       {skill}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>

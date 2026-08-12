@@ -41,7 +41,9 @@ export default function Projects() {
                   {project.name}
                 </h3>
                 <span
-                  className={`shrink-0 border px-2 py-0.5 font-mono text-[10px] font-bold tracking-widest ${SEVERITY_STYLES[project.severity]}`}
+                  className={`shrink-0 border px-2 py-0.5 font-mono text-[10px] font-bold tracking-widest ${SEVERITY_STYLES[project.severity]} ${
+                    project.severity === 'CRITICAL' ? 'pulse-dot' : ''
+                  }`}
                   title="Impact rating"
                 >
                   {project.severity}

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import MatrixRain from './MatrixRain.jsx'
 import { profile } from '../data/resume.js'
 
@@ -86,6 +86,20 @@ export default function Hero() {
   const typed = useTypewriter(profile.roles)
   const nameRef = useRef(null)
 
+  // subtle parallax tilt for the hex shield, following the cursor
+  const mvX = useMotionValue(0)
+  const mvY = useMotionValue(0)
+  const springX = useSpring(mvX, { stiffness: 120, damping: 18 })
+  const springY = useSpring(mvY, { stiffness: 120, damping: 18 })
+  const rotateX = useTransform(springY, [-0.5, 0.5], [10, -10])
+  const rotateY = useTransform(springX, [-0.5, 0.5], [-10, 10])
+
+  const onHeroMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    mvX.set((e.clientX - rect.left) / rect.width - 0.5)
+    mvY.set((e.clientY - rect.top) / rect.height - 0.5)
+  }
+
   // brief glitch burst on the name every few seconds
   useEffect(() => {
     const interval = setInterval(() => {
@@ -96,7 +110,11 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
+    <section
+      id="top"
+      onMouseMove={onHeroMouseMove}
+      className="relative flex min-h-screen items-center overflow-hidden"
+    >
       <MatrixRain opacity={0.32} />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg/60 to-bg" />
 
@@ -140,9 +158,9 @@ export default function Hero() {
             transition={{ delay: 0.75 }}
             className="mt-6 max-w-xl leading-relaxed text-mist"
           >
-            Breaking things ethically, defending them professionally. SOC lab builder,
-            OWASP hunter, and published security researcher — turning attack surfaces
-            into hardened perimeters.
+            Building and defending detection infrastructure by day, chasing OWASP Top 10
+            findings by night. SOC lab builder, XDR engineer-in-training, and published
+            security researcher — growing into full-stack offensive security.
           </motion.p>
 
           <motion.div
@@ -177,6 +195,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.7, duration: 0.7 }}
+          style={{ rotateX, rotateY, transformPerspective: 800 }}
           className="hidden lg:block"
         >
           <HexShield />

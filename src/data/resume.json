@@ -1,192 +1,91 @@
 {
   "profile": {
     "name": "MILAN TEJ H D",
-    "roles": [
-      "Penetration Tester",
-      "VAPT Specialist",
-      "SOC Analyst",
-      "XDR Developer",
-      "Security Researcher"
-    ],
+    "roles": ["SOC & XDR Engineer", "Aspiring VAPT Specialist", "Aspiring Penetration Tester", "Security Researcher"],
     "location": "Bengaluru, India",
     "email": "milantej02@gmail.com",
     "linkedin": "https://linkedin.com/in/mthd222",
     "github": "https://github.com/mthd222",
     "whatsapp": "https://wa.me/918050675711",
-    "summary": "Cybersecurity intern and VAPT specialist with hands-on experience across SOC operations, threat detection engineering, and offensive security testing. Currently building and operating a SOC lab using Wazuh at Netcradus Pvt Ltd, developing internal security tools, and contributing to an XDR solution. Published security researcher (IJRASET) with expertise in threat modelling, secure system design, and structured vulnerability report writing.",
+    "summary": "Cybersecurity intern with hands-on experience across SOC operations, threat detection engineering, and offensive security testing, and a strong interest in growing further into VAPT and penetration testing. Currently working with TrendMicro and Qualys enterprise security platforms and preparing to build an XDR (Extended Detection and Response) solution upon Wazuh as a Cyber Security Intern at Midevops Service Pvt Ltd, following hands-on SOC lab experience with Wazuh at Netcradus Pvt Ltd. Demonstrated ability to discover, exploit, and document vulnerabilities across web applications and network infrastructure using OWASP Top 10 methodology, Burp Suite, Nmap, Metasploit, and Wireshark. Published security researcher (IJRASET, Mar 2026) with expertise in threat modelling, secure system design, and structured vulnerability report writing.",
     "availability": "Immediately available — open to on-site, remote, or hybrid roles."
   },
   "stats": [
-    {
-      "label": "Vulnerability classes exploited",
-      "value": 15,
-      "suffix": "+"
-    },
-    {
-      "label": "Network packets analysed",
-      "value": 10000,
-      "suffix": "+"
-    },
-    {
-      "label": "Security controls implemented",
-      "value": 20,
-      "suffix": ""
-    },
-    {
-      "label": "OWASP Top 10 coverage",
-      "value": 100,
-      "suffix": "%"
-    }
+    { "label": "Enterprise platforms in production use", "value": 2, "suffix": "" },
+    { "label": "Network packets analysed", "value": 10000, "suffix": "+" },
+    { "label": "Security controls implemented", "value": 20, "suffix": "" },
+    { "label": "OWASP Top 10 coverage", "value": 100, "suffix": "%" }
   ],
   "skillRadar": [
-    {
-      "axis": "Pentesting / VAPT",
-      "value": 90
-    },
-    {
-      "axis": "Web App Security",
-      "value": 88
-    },
-    {
-      "axis": "SOC / SIEM (Wazuh)",
-      "value": 85
-    },
-    {
-      "axis": "Threat Modeling",
-      "value": 84
-    },
-    {
-      "axis": "Network Security",
-      "value": 82
-    },
-    {
-      "axis": "Python / Scripting",
-      "value": 80
-    }
+    { "axis": "SOC / SIEM (Wazuh)", "value": 88 },
+    { "axis": "Web App Security", "value": 85 },
+    { "axis": "Threat Modeling", "value": 84 },
+    { "axis": "Pentesting / VAPT", "value": 78 },
+    { "axis": "Network Security", "value": 82 },
+    { "axis": "Python / Scripting", "value": 80 }
   ],
   "skillGroups": [
     {
       "title": "SOC & Detection Engineering",
       "icon": "radar",
-      "skills": [
-        "Wazuh (SIEM/XDR)",
-        "SOC Lab Setup & Admin",
-        "Log Collection & Correlation",
-        "Threat Detection",
-        "XDR Development",
-        "Security Tool Development"
-      ]
+      "skills": ["SOC Lab Setup & Administration", "Wazuh (SIEM/XDR)", "TrendMicro", "Qualys", "Log Collection & Correlation", "Threat Detection", "Security Tool Development", "XDR Development"]
     },
     {
       "title": "Penetration Testing",
       "icon": "crosshair",
-      "skills": [
-        "VAPT",
-        "Red Team Exercises",
-        "Black-box & Grey-box Testing",
-        "Exploit Development",
-        "Post-Exploitation",
-        "Privilege Escalation"
-      ]
+      "skills": ["VAPT", "Red Team Exercises", "Black-box & Grey-box Testing", "Exploit Development", "Post-Exploitation", "Privilege Escalation"]
     },
     {
       "title": "Web Application Security",
       "icon": "globe",
-      "skills": [
-        "OWASP Top 10",
-        "SQL Injection",
-        "XSS",
-        "CSRF",
-        "IDOR",
-        "File Inclusion",
-        "Broken Authentication",
-        "Session Hijacking"
-      ]
+      "skills": ["OWASP Top 10", "SQL Injection", "XSS", "CSRF", "IDOR", "File Inclusion", "Broken Authentication", "Session Hijacking"]
     },
     {
       "title": "Threat Modeling & Analysis",
       "icon": "target",
-      "skills": [
-        "MITRE ATT&CK",
-        "STRIDE",
-        "CVE/CVSS Scoring",
-        "Attack Surface Mapping",
-        "Risk Prioritisation"
-      ]
+      "skills": ["MITRE ATT&CK", "Threat Modeling (STRIDE)", "CVE/CVSS Scoring", "Attack Surface Mapping", "Risk Prioritisation"]
     },
     {
       "title": "Security Arsenal",
       "icon": "tool",
-      "skills": [
-        "Burp Suite",
-        "Nmap",
-        "Metasploit",
-        "Wireshark",
-        "Nikto",
-        "Dirb",
-        "Netcat",
-        "OWASP ZAP",
-        "Postman"
-      ]
+      "skills": ["Wazuh", "Burp Suite", "Nmap", "Metasploit Framework", "Wireshark", "Nikto", "Dirb", "Netcat", "OWASP ZAP", "Postman"]
     },
     {
       "title": "Network Security",
       "icon": "network",
-      "skills": [
-        "TCP/IP",
-        "OSI Model (L2–L7)",
-        "Packet Capture & Analysis",
-        "Protocol Forensics",
-        "TLS/SSL",
-        "WireGuard VPN"
-      ]
+      "skills": ["TCP/IP", "OSI Model (L2–L7)", "Packet Capture & Analysis", "Protocol Forensics", "TLS/SSL", "WireGuard VPN"]
     },
     {
       "title": "Programming & Platforms",
       "icon": "code",
-      "skills": [
-        "Python (exploits & automation)",
-        "Bash",
-        "SQL",
-        "Kali Linux",
-        "Ubuntu",
-        "Windows Server",
-        "VMware / VirtualBox",
-        "Active Directory"
-      ]
+      "skills": ["Python (exploit scripts, automation tools)", "Bash", "SQL", "Kali Linux", "Ubuntu", "Windows Server", "VMware", "VirtualBox", "Active Directory (basic)"]
     },
     {
       "title": "Reporting",
       "icon": "doc",
-      "skills": [
-        "Vulnerability Reports",
-        "Executive Summaries",
-        "CVSS Risk Ratings",
-        "Remediation Recommendations"
-      ]
+      "skills": ["Vulnerability Report Writing", "Executive Summaries", "CVSS-based Risk Ratings", "Remediation Recommendations"]
     }
   ],
   "experience": [
     {
       "role": "Cyber Security Intern",
-      "company": "Netcradus Pvt Ltd",
-      "period": "May 2026 – Present",
+      "company": "Midevops Service Pvt Ltd",
+      "period": "Jul 29, 2026 – Present",
       "current": true,
       "points": [
-        "Set up and configured a SOC lab using Wazuh — centralized log collection, correlation rules, and real-time alerting for endpoint and network monitoring.",
-        "Developed custom security tools to support SOC workflows, improving detection efficiency and analyst response time.",
-        "Building an XDR (Extended Detection and Response) solution — detection logic, alert correlation, and automated response across multiple telemetry sources."
+        "Learning and working with enterprise security platforms TrendMicro and Qualys for endpoint protection, vulnerability management, and threat monitoring.",
+        "Preparing to build an XDR (Extended Detection and Response) solution upon Wazuh, applying prior SOC lab experience to detection logic, alert correlation, and automated response design."
       ]
     },
     {
-      "role": "Full Stack Web Development Intern",
-      "company": "Dream Buzz Solutions",
-      "period": "Feb 2024 – Mar 2024",
+      "role": "Cyber Security Intern",
+      "company": "Netcradus Pvt Ltd",
+      "period": "May 2026 – Jul 2026",
       "current": false,
       "points": [
-        "Identified and remediated 5 high-severity vulnerabilities (SQL injection, XSS) by applying OWASP secure coding standards.",
-        "Conducted structured vulnerability assessments on 3 web interfaces with CVSS-rated findings reports.",
-        "Reduced injection attack surface to zero critical findings on re-test via parameterised queries and input validation."
+        "Set up and configured a SOC (Security Operations Center) lab using Wazuh, implementing centralized log collection, correlation rules, and real-time alerting for endpoint and network monitoring.",
+        "Developed custom security tools to support SOC workflows, improving detection efficiency and analyst response time.",
+        "Contributed to the early development of an XDR (Extended Detection and Response) solution, supporting detection logic and alert correlation across multiple telemetry sources."
       ]
     }
   ],
@@ -195,77 +94,44 @@
     "journal": "IJRASET — International Journal for Research in Applied Science & Engineering Technology",
     "date": "Mar 2026",
     "points": [
-      "Executed threat modeling on RDP and VNC protocols, identifying 3 critical attack vectors including plaintext credential exposure in VNC sessions across a controlled 4-VM lab.",
-      "Captured and analysed 10,000+ packets with Wireshark to quantify the RDP TLS vs VNC plaintext security gap — threat surface reduced 100% with WireGuard encapsulation.",
-      "Published a structured security report with CVSS-based risk ratings, exploit impact analysis, and prioritised remediation in a peer-reviewed international journal."
+      "Executed threat modeling on RDP and VNC protocols, identifying 3 critical attack vectors including plaintext credential exposure in VNC sessions across a controlled 4-VM virtual lab environment.",
+      "Captured and analysed 10,000+ network packets using Wireshark to quantify the security gap between RDP TLS encryption and VNC plaintext traffic, reducing threat surface by 100% with WireGuard VPN encapsulation.",
+      "Produced a structured security report with CVSS-based risk ratings, exploit impact analysis, and prioritised remediation recommendations, published in a peer-reviewed international journal."
     ]
   },
   "projects": [
     {
-      "name": "Automated Privacy Policy Detection & Compliance Analysis",
+      "name": "Automated Privacy Policy Detection & Real-Time Compliance Analysis System",
       "tag": "Final Year MCA Project · 2026",
       "severity": "CRITICAL",
-      "tech": [
-        "Chrome Extension (MV3)",
-        "Flask",
-        "NLP",
-        "DistilBART",
-        "GDPR",
-        "DPDP Act"
-      ],
+      "tech": ["Chrome Extension (MV3)", "Flask", "NLP", "DistilBART", "GDPR", "DPDP Act"],
       "points": [
-        "Chrome extension + Flask backend that auto-detects privacy policy links via DOM scanning and delivers real-time NLP summarisation at the point of consent.",
-        "Three-level NLP pipeline and rule-based risk engine covering 8 GDPR + 5 DPDP Act 2023 compliance dimensions with cited evidence and confidence scoring.",
-        "Evaluated on 62 real-world policies across 10 sectors — 93.2% precision / 94.8% recall; exposed a 90.3% failure rate in data retention disclosure."
+        "Built a Chrome extension (Manifest V3) with a Flask backend that automatically detects privacy policy links via DOM scanning and delivers real-time NLP-based summarisation and compliance analysis at the point of user consent.",
+        "Implemented a three-level NLP pipeline (rule-based summary, DistilBART abstractive summarisation, keypoint extraction) and a rule-based risk detection engine covering 8 GDPR and 5 DPDP Act 2023 compliance dimensions with cited evidence and confidence scoring.",
+        "Evaluated the system on 62 real-world privacy policies across 10 industry sectors, achieving 93.2% precision / 94.8% recall in link detection and identifying systemic GDPR non-compliance, including a 90.3% failure rate in data retention disclosure."
       ]
     },
     {
       "name": "Secure Authentication System",
       "tag": "Cybersecurity Project · Jun 2026",
       "severity": "HIGH",
-      "tech": [
-        "Flask",
-        "SQLite",
-        "TOTP / pyotp",
-        "PBKDF2",
-        "OWASP ZAP"
-      ],
+      "tech": ["Flask", "SQLite", "TOTP / pyotp", "PBKDF2", "OWASP ZAP"],
       "points": [
-        "Full-stack auth system implementing 20 security controls with full OWASP Top 10 coverage.",
-        "TOTP 2FA (RFC 6238) with QR enrollment + email OTP fallback, PBKDF2-HMAC-SHA256 hashing, CSRF protection, CSP and hardened response headers.",
-        "Brute-force lockout, 10-minute session TTL, HttpOnly/SameSite cookies, fixation prevention, and IP-stamped audit logging — validated across 9 attack scenarios."
+        "Designed and built a full-stack Flask + SQLite authentication system implementing 20 security controls, achieving full coverage of OWASP Top 10 threats.",
+        "Implemented TOTP-based two-factor authentication (pyotp, RFC 6238) with QR enrollment and email OTP fallback, PBKDF2-HMAC-SHA256 password hashing, CSRF protection (Flask-WTF), and security response headers (CSP, X-Frame-Options, X-Content-Type-Options).",
+        "Engineered brute-force protection (5-attempt lockout with 15-minute window), session hardening (10-minute TTL, HttpOnly/SameSite cookies, fixation prevention), and audit logging of login attempts by IP and timestamp.",
+        "Validated security controls using OWASP ZAP and Postman across 9 attack scenarios, including SQL injection, XSS, CSRF, and brute force, with all critical vectors blocked and confirmed via re-test."
       ]
     },
     {
       "name": "Automated Web Application Security Scanner",
       "tag": "Personal Project · Jan – Apr 2025",
       "severity": "HIGH",
-      "tech": [
-        "Python",
-        "OWASP Top 10",
-        "Recon Automation",
-        "Exploit Modules"
-      ],
+      "tech": ["Python", "OWASP Top 10", "Recon Automation", "Exploit Modules"],
       "points": [
-        "Python VAPT tool detecting 8 OWASP Top 10 vulnerability categories (SQLi, XSS, IDOR) across 5 test applications.",
-        "Cut manual pentesting time ~60% by scripting recon, scanning, and exploit validation into one repeatable pipeline.",
-        "Custom exploit modules for SQL injection and authentication bypass — core exploit development for red team engagements."
-      ]
-    },
-    {
-      "name": "Code4You — Secure Coding Contest Platform",
-      "tag": "Academic Project · Jun – Oct 2024",
-      "severity": "MEDIUM",
-      "tech": [
-        "Full Stack",
-        "RBAC",
-        "Razorpay",
-        "TLS",
-        "PCI-DSS"
-      ],
-      "points": [
-        "Hardened a full-stack platform against OWASP Top 10, eliminating 6 identified vulnerabilities via parameterised queries, RBAC, and secure sessions.",
-        "Integrated Razorpay payments with TLS encryption for 200+ registered users, aligned with PCI-DSS transaction security."
+        "Engineered a Python-based VAPT tool that detected 8 OWASP Top 10 vulnerability categories, including SQL injection, XSS, and IDOR, across 5 test web applications.",
+        "Reduced manual penetration testing time by ~60% by scripting reconnaissance, scanning, and exploit validation into a single repeatable pipeline.",
+        "Implemented custom exploit modules for SQL injection and authentication bypass, demonstrating core exploit development skills for junior red team engagements."
       ]
     }
   ],
@@ -274,7 +140,7 @@
       "degree": "Master of Computer Applications (MCA)",
       "school": "MS Ramaiah Institute of Technology, Bangalore",
       "period": "Aug 2024 – Jul 2026",
-      "score": "CGPA 9.56 / 10"
+      "score": "CGPA 9.56 / 10 — Ranked 2nd in Batch"
     },
     {
       "degree": "Bachelor of Computer Applications (BCA)",
@@ -284,10 +150,7 @@
     }
   ],
   "certifications": [
-    {
-      "name": "Cybersecurity and Ethical Hacking",
-      "issuer": "Boston Institute of Analytics"
-    }
+    { "name": "Cybersecurity and Ethical Hacking", "issuer": "Boston Institute of Analytics" }
   ],
   "interests": [
     "CTF — TryHackMe / HackTheBox",
@@ -296,9 +159,5 @@
     "Red Team Research",
     "Exploit Development"
   ],
-  "languages": [
-    "English (Professional)",
-    "Kannada (Native)",
-    "Hindi (Conversational)"
-  ]
+  "languages": ["English (Professional)", "Kannada (Native)", "Hindi (Conversational)"]
 }
