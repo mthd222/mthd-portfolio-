@@ -16,9 +16,16 @@ export default function Education() {
               <h4 className="mt-2 font-display text-lg font-bold text-ghost">{edu.degree}</h4>
               <p className="mt-1.5 text-sm text-mist">{edu.school}</p>
               <p className="mt-1 font-mono text-xs text-mist/60">{edu.period}</p>
-              <p className="mt-3 inline-block bg-neon/10 px-2.5 py-1 font-mono text-sm font-bold text-neon">
-                {edu.score}
-              </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <p className="inline-block bg-neon/10 px-2.5 py-1 font-mono text-sm font-bold text-neon">
+                  {edu.score}
+                </p>
+                {edu.honor && (
+                  <p className="inline-flex items-center gap-1 border border-[#c0c0c0]/50 bg-gradient-to-b from-[#e8e8e8]/15 to-[#a8a8a8]/10 px-2.5 py-1 font-mono text-sm font-bold text-[#d8d8d8] shadow-[0_0_12px_rgba(192,192,192,0.25)]">
+                    {edu.honor}
+                  </p>
+                )}
+              </div>
             </div>
           </Reveal>
         ))}
