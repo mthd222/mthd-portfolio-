@@ -142,6 +142,17 @@ export default function Hero() {
           </motion.h1>
 
           <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.55 }}
+            className="mt-3"
+          >
+            <span className="inline-flex items-center gap-1.5 border border-[#c0c0c0]/50 bg-gradient-to-b from-[#e8e8e8]/15 to-[#a8a8a8]/10 px-3 py-1 font-mono text-xs font-bold text-[#d8d8d8] shadow-[0_0_12px_rgba(192,192,192,0.25)]">
+              🥈 MCA Silver Medalist — 2nd in Batch
+            </span>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
