@@ -23,16 +23,16 @@ const SECTIONS = [
   { key: 'skillGroups', label: 'Skill Groups', type: 'array', titleField: 'title', fields: { title: 'text', icon: 'text', skills: LIST }, hint: 'icon: radar | crosshair | globe | target | tool | network | code | doc' },
   { key: 'experience', label: 'Experience', type: 'array', titleField: 'role', fields: { role: 'text', company: 'text', period: 'text', current: 'bool', points: LIST } },
   { key: 'research', label: 'Research Publication', type: 'object', fields: { title: 'textarea', journal: 'text', date: 'text', points: LIST } },
-  { key: 'projects', label: 'Projects', type: 'array', titleField: 'name', fields: { name: 'text', tag: 'text', severity: 'text', tech: LIST, points: LIST }, hint: 'severity: CRITICAL | HIGH | MEDIUM' },
-  { key: 'education', label: 'Education', type: 'array', titleField: 'degree', fields: { degree: 'text', school: 'text', period: 'text', score: 'text' } },
+  { key: 'projects', label: 'Projects', type: 'array', titleField: 'name', fields: { name: 'text', tag: 'text', severity: 'text', tech: LIST, points: LIST }, hint: 'severity: CRITICAL | HIGH | MEDIUM | LOW' },
+  { key: 'education', label: 'Education', type: 'array', titleField: 'degree', fields: { degree: 'text', school: 'text', period: 'text', score: 'text', honor: 'text' } },
   { key: 'certifications', label: 'Certifications', type: 'array', titleField: 'name', fields: { name: 'text', issuer: 'text' } },
   { key: 'interests', label: 'Interests', type: 'stringlist' },
   { key: 'languages', label: 'Languages', type: 'stringlist' },
 ]
 
 const inputCls =
-  'w-full border border-line bg-void px-3 py-2 font-mono text-sm text-ghost caret-neon outline-none transition focus:border-neon/60'
-const labelCls = 'mb-1 block font-mono text-[10px] uppercase tracking-[0.2em] text-mist/60'
+  'field'
+const labelCls = 'mb-1 block text-sm font-semibold text-muted'
 
 function Field({ type, value, onChange }) {
   if (type === LIST) {
@@ -54,8 +54,8 @@ function Field({ type, value, onChange }) {
   }
   if (type === 'bool') {
     return (
-      <label className="flex cursor-pointer items-center gap-2 py-2 font-mono text-sm text-mist">
-        <input type="checkbox" checked={!!value} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-[#00ff9c]" />
+      <label className="flex cursor-pointer items-center gap-2 py-2 text-muted">
+        <input type="checkbox" checked={!!value} onChange={(e) => onChange(e.target.checked)} className="h-4 w-4 accent-ink" />
         enabled
       </label>
     )
@@ -98,22 +98,22 @@ function ArrayEditor({ section, items, onChange }) {
   return (
     <div className="grid gap-2">
       {items.map((item, i) => (
-        <div key={i} className="border border-line bg-panel">
+        <div key={i} className="rounded border border-rule bg-panel">
           <div className="flex items-center gap-1 px-3 py-2">
-            <button onClick={() => setOpen(open === i ? null : i)} className="flex-1 text-left font-mono text-sm text-cyber hover:text-neon">
+            <button onClick={() => setOpen(open === i ? null : i)} className="flex-1 py-1 text-left font-semibold hover:underline">
               {open === i ? '▾' : '▸'} {item[section.titleField] || `item ${i + 1}`}
             </button>
-            <button onClick={() => move(i, -1)} title="move up" className="px-1.5 font-mono text-mist/60 hover:text-neon">↑</button>
-            <button onClick={() => move(i, 1)} title="move down" className="px-1.5 font-mono text-mist/60 hover:text-neon">↓</button>
+            <button onClick={() => move(i, -1)} title="move up" className="px-2 py-1 text-muted hover:text-ink">↑</button>
+            <button onClick={() => move(i, 1)} title="move down" className="px-2 py-1 text-muted hover:text-ink">↓</button>
             <button
               onClick={() => window.confirm('Delete this entry?') && onChange(items.filter((_, k) => k !== i))}
-              title="delete" className="px-1.5 font-mono text-danger/70 hover:text-danger"
+              title="delete" className="px-2 py-1 text-alert hover:underline"
             >
               ✕
             </button>
           </div>
           {open === i && (
-            <div className="border-t border-line p-4">
+            <div className="border-t border-rule p-4">
               <FieldSet fields={section.fields} obj={item} onChange={(v) => onChange(items.map((it, k) => (k === i ? v : it)))} />
             </div>
           )}
@@ -124,7 +124,7 @@ function ArrayEditor({ section, items, onChange }) {
           onChange([...items, emptyItem(section.fields)])
           setOpen(items.length)
         }}
-        className="border border-dashed border-neon/40 py-2 font-mono text-sm text-neon hover:bg-neon/10"
+        className="rounded border-2 border-dashed border-rule py-2 font-semibold hover:border-ink"
       >
         + add {section.label.toLowerCase().replace(/s?\s*\(.*/, '')}
       </button>
@@ -159,30 +159,30 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-bg px-4 py-8 text-ghost">
+    <div className="min-h-screen bg-paper px-4 py-8 text-ink">
       <div className="mx-auto max-w-3xl">
         <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h1 className="font-display text-2xl font-bold">
-              <span className="text-neon">MTHD</span> content editor
+            <h1 className="display text-2xl">
+              mthd222 content editor
             </h1>
-            <p className="mt-1 font-mono text-xs text-mist/60">
-              // local only — saves to src/data/resume.json, site hot-reloads instantly
+            <p className="mt-1 text-sm text-muted">
+              Local only. Saves to src/data/resume.json and the site hot-reloads.
             </p>
           </div>
           <div className="flex items-center gap-3">
             {status && (
-              <span className={`font-mono text-xs ${status.startsWith('✗') ? 'text-danger' : 'text-cyber'}`}>{status}</span>
+              <span className={`text-sm font-semibold ${status.startsWith('✗') ? 'text-alert' : 'text-ink'}`}>{status}</span>
             )}
             <button
               onClick={save}
               disabled={!dirty}
-              className="border border-neon/60 bg-neon/10 px-5 py-2 font-mono text-sm font-medium text-neon transition enabled:hover:bg-neon/20 disabled:opacity-40"
+              className="btn btn-solid disabled:cursor-not-allowed disabled:opacity-40"
             >
-              save changes
+              Save changes
             </button>
-            <a href="/" className="border border-line px-4 py-2 font-mono text-sm text-mist hover:text-cyber">
-              view site →
+            <a href="/" className="btn">
+              View site
             </a>
           </div>
         </header>
@@ -192,10 +192,10 @@ export default function Admin() {
             <button
               key={s.key}
               onClick={() => setActive(s.key)}
-              className={`border px-3 py-1.5 font-mono text-xs transition ${
+              className={`rounded border px-3 py-1.5 text-sm font-medium transition-colors ${
                 active === s.key
-                  ? 'border-neon/60 bg-neon/10 text-neon'
-                  : 'border-line text-mist hover:border-neon/40 hover:text-neon'
+                  ? 'border-ink bg-ink text-paper'
+                  : 'border-rule text-muted hover:border-ink hover:text-ink'
               }`}
             >
               {s.label}
@@ -203,8 +203,8 @@ export default function Admin() {
           ))}
         </nav>
 
-        <main className="border border-line bg-panel/60 p-5">
-          {section.hint && <p className="mb-4 font-mono text-xs text-amber/80">hint: {section.hint}</p>}
+        <main className="rounded-md border border-rule bg-panel p-5">
+          {section.hint && <p className="mb-4 text-sm text-muted">Hint: {section.hint}</p>}
 
           {section.type === 'object' && (
             <FieldSet fields={section.fields} obj={data[section.key]} onChange={(v) => update(section.key, v)} />
@@ -220,8 +220,8 @@ export default function Admin() {
           )}
         </main>
 
-        <footer className="mt-6 font-mono text-xs leading-6 text-mist/50">
-          <p>&gt; to publish: save here, then commit &amp; push (git add -A · git commit · git push) — your host redeploys automatically.</p>
+        <footer className="mt-6 text-sm text-muted">
+          <p>To publish: save here, then commit and push. Your host redeploys automatically.</p>
         </footer>
       </div>
     </div>

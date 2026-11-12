@@ -1,50 +1,48 @@
-import { SectionHeading, Reveal } from './Section.jsx'
+import { Section, Entry } from './Section.jsx'
 import { education, certifications } from '../data/resume.js'
+import { stripLeadingSymbols, splitOnDash } from '../sections.js'
+import Icon from './Icons.jsx'
 
 export default function Education() {
   return (
-    <section id="education" className="relative mx-auto max-w-6xl px-5 py-24">
-      <SectionHeading tag="sudo cat /etc/education" title="Education &" accent="Certifications" />
-
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {education.map((edu, i) => (
-          <Reveal key={edu.degree} delay={i * 0.1}>
-            <div className="neon-card corner-brackets h-full p-6">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-cyber">
-                ▚ Degree
-              </p>
-              <h4 className="mt-2 font-display text-lg font-bold text-ghost">{edu.degree}</h4>
-              <p className="mt-1.5 text-sm text-mist">{edu.school}</p>
-              <p className="mt-1 font-mono text-xs text-mist/60">{edu.period}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                <p className="inline-block bg-neon/10 px-2.5 py-1 font-mono text-sm font-bold text-neon">
-                  {edu.score}
-                </p>
-                {edu.honor && (
-                  <p className="inline-flex items-center gap-1 border border-[#c0c0c0]/50 bg-gradient-to-b from-[#e8e8e8]/15 to-[#a8a8a8]/10 px-2.5 py-1 font-mono text-sm font-bold text-[#d8d8d8] shadow-[0_0_12px_rgba(192,192,192,0.25)]">
-                    {edu.honor}
+    <Section id="education" title="Education" note={education[0]?.score}>
+      <ol>
+        {education.map((item) => {
+          const honor = item.honor && splitOnDash(stripLeadingSymbols(item.honor))
+          return (
+            <Entry key={item.degree} aside={<p className="font-semibold">{item.period}</p>}>
+              <h3 className="text-2xl leading-tight font-semibold">{item.degree}</h3>
+              <p className="mt-1 text-lg text-muted">{item.school}</p>
+              <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <p className="display text-2xl">{item.score}</p>
+                {honor && (
+                  <p className="tinted inline-flex items-center gap-2 rounded px-3 py-1.5 font-semibold">
+                    <Icon name="medal" />
+                    {honor.join(', ')}
                   </p>
                 )}
               </div>
-            </div>
-          </Reveal>
-        ))}
+            </Entry>
+          )
+        })}
+      </ol>
 
-        {certifications.map((cert, i) => (
-          <Reveal key={cert.name} delay={0.2 + i * 0.1}>
-            <div className="neon-card corner-brackets h-full p-6">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-amber">
-                ★ Certification
-              </p>
-              <h4 className="mt-2 font-display text-lg font-bold text-ghost">{cert.name}</h4>
-              <p className="mt-1.5 text-sm text-mist">{cert.issuer}</p>
-              <p className="mt-3 inline-block bg-amber/10 px-2.5 py-1 font-mono text-xs font-bold text-amber">
-                VERIFIED ✔
-              </p>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </section>
+      {certifications.length > 0 && (
+        <div className="mt-12 grid gap-x-10 gap-y-3 md:grid-cols-[13.5rem_minmax(0,1fr)]">
+          <h3 className="text-lg font-semibold">Certifications</h3>
+          <ul className="border-y border-rule">
+            {certifications.map((cert) => (
+              <li
+                key={cert.name}
+                className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-rule py-3.5 first:border-t-0"
+              >
+                <span className="font-semibold">{cert.name}</span>
+                <span className="text-muted">{cert.issuer}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </Section>
   )
 }

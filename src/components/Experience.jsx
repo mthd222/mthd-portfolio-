@@ -1,47 +1,33 @@
-import { SectionHeading, Reveal } from './Section.jsx'
+import { Section, Entry, Points } from './Section.jsx'
 import { experience } from '../data/resume.js'
 
 export default function Experience() {
-  return (
-    <section id="experience" className="relative mx-auto max-w-6xl px-5 py-24">
-      <SectionHeading tag="git log --experience" title="Mission" accent="Log" />
+  const count = experience.length
 
-      <div className="relative ml-3 border-l border-line pl-8 sm:ml-6">
-        {experience.map((job, i) => (
-          <Reveal key={job.company} delay={i * 0.12} className="relative pb-12 last:pb-0">
-            {/* timeline node */}
-            <span
-              className={`absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-2 ${
-                job.current
-                  ? 'border-neon bg-neon/30 pulse-dot'
-                  : 'border-mist/40 bg-panel'
-              }`}
-            />
-            <div className="neon-card corner-brackets p-6">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="font-display text-xl font-bold text-ghost">{job.role}</h3>
-                <span className="font-mono text-xs text-cyber">{job.period}</span>
-              </div>
-              <p className="mt-1 font-mono text-sm text-neon">
-                @ {job.company}
+  return (
+    <Section id="experience" title="Experience" note={`${count} ${count === 1 ? 'role' : 'roles'} so far`}>
+      <ol>
+        {experience.map((job) => (
+          <Entry
+            key={`${job.company}-${job.period}`}
+            aside={
+              <>
+                <p className="font-semibold">{job.period}</p>
                 {job.current && (
-                  <span className="ml-3 border border-neon/50 bg-neon/10 px-2 py-0.5 text-[10px] uppercase tracking-widest">
-                    active
-                  </span>
+                  <p className="tinted inline-flex items-center gap-2 rounded px-2.5 py-1 text-sm font-semibold">
+                    <span className="live-dot h-2 w-2 rounded-full bg-fixed" aria-hidden="true" />
+                    Current role
+                  </p>
                 )}
-              </p>
-              <ul className="mt-4 space-y-2.5">
-                {job.points.map((point, pi) => (
-                  <li key={pi} className="flex gap-2.5 text-sm leading-relaxed text-mist">
-                    <span className="mt-0.5 shrink-0 font-mono text-neon">▸</span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
+              </>
+            }
+          >
+            <h3 className="text-2xl leading-tight font-semibold">{job.role}</h3>
+            <p className="mt-1 text-lg text-muted">{job.company}</p>
+            <Points items={job.points} />
+          </Entry>
         ))}
-      </div>
-    </section>
+      </ol>
+    </Section>
   )
 }

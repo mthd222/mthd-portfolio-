@@ -1,32 +1,24 @@
-import { SectionHeading, Reveal } from './Section.jsx'
+import { Section, Points } from './Section.jsx'
 import { research } from '../data/resume.js'
+import { splitOnDash } from '../sections.js'
 
 export default function Research() {
-  return (
-    <section id="research" className="relative mx-auto max-w-6xl px-5 py-24">
-      <SectionHeading tag="grep -r 'published'" title="Research" accent="Publication" />
+  const [short, full] = splitOnDash(research.journal)
 
-      <Reveal>
-        <article className="neon-card corner-brackets mx-auto max-w-3xl p-7">
-          <p className="mb-3 inline-block border border-violet/50 bg-violet/10 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-widest text-violet">
-            Peer-Reviewed Publication
-          </p>
-          <h3 className="font-display text-xl font-bold leading-snug text-ghost">
-            {research.title}
-          </h3>
-          <p className="mt-2 font-mono text-xs text-cyber">
-            {research.journal} · {research.date}
-          </p>
-          <ul className="mt-5 space-y-2.5">
-            {research.points.map((point, i) => (
-              <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-mist">
-                <span className="mt-0.5 shrink-0 font-mono text-neon">▸</span>
-                {point}
-              </li>
-            ))}
-          </ul>
-        </article>
-      </Reveal>
-    </section>
+  return (
+    <Section id="research" title="Research" note={`Published ${research.date}`}>
+      <article className="grid gap-x-10 gap-y-6 md:grid-cols-[13.5rem_minmax(0,1fr)]">
+        <div className="tinted self-start rounded-md px-4 py-5">
+          <p className="display text-3xl">{short}</p>
+          <p className="mt-2 font-semibold">{research.date}</p>
+          <p className="mt-1 text-sm">Peer-reviewed journal</p>
+        </div>
+        <div className="min-w-0">
+          <h3 className="max-w-[32ch] text-2xl leading-tight font-semibold">{research.title}</h3>
+          {full && <p className="mt-2 text-lg text-muted">{full}</p>}
+          <Points items={research.points} />
+        </div>
+      </article>
+    </Section>
   )
 }

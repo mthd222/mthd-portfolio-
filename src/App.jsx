@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import BootLoader from './components/BootLoader.jsx'
-import { ScrollProgress, CursorFx, BackToTop } from './components/Fx.jsx'
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
@@ -11,43 +8,37 @@ import Research from './components/Research.jsx'
 import Education from './components/Education.jsx'
 import Terminal from './components/Terminal.jsx'
 import Contact from './components/Contact.jsx'
+import BackToTop from './components/BackToTop.jsx'
 import { profile } from './data/resume.js'
 
 export default function App() {
-  const [booted, setBooted] = useState(false)
-
   return (
-    <div className="scanlines relative min-h-screen bg-bg">
-      {!booted && <BootLoader onDone={() => setBooted(true)} />}
+    <>
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      <Navbar />
+      <main id="main">
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Research />
+        <Education />
+        <Terminal />
+        <Contact />
+      </main>
 
-      <div className="cyber-grid pointer-events-none fixed inset-0 z-0" />
-      <ScrollProgress />
-      <CursorFx />
-      <BackToTop />
-
-      <div className="relative z-10">
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Research />
-          <Education />
-          <Terminal />
-          <Contact />
-        </main>
-
-        <footer className="border-t border-line py-8 text-center font-mono text-xs text-mist/50">
+      <footer className="mt-8 border-t border-rule">
+        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-x-8 gap-y-2 px-5 py-8 text-muted sm:px-8">
           <p>
-            © {new Date().getFullYear()} {profile.name} — built with React · secured by design
+            © {new Date().getFullYear()} {profile.name}
           </p>
-          <p className="mt-1.5">
-            <span className="text-neon">$</span> echo "no vulnerabilities were exploited in the making of this site"
-          </p>
-        </footer>
-      </div>
-    </div>
+          <p>Row colours borrowed from Wireshark's default colouring rules.</p>
+        </div>
+      </footer>
+      <BackToTop />
+    </>
   )
 }

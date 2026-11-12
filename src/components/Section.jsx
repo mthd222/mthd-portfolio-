@@ -1,71 +1,40 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { tintOf, tintStyle } from '../sections.js'
 
-const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#01'
-
-/* Decrypt effect: text resolves from random glyphs when scrolled into view */
-export function ScrambleText({ text }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  const [display, setDisplay] = useState(text)
-
-  useEffect(() => {
-    if (!inView) return
-    let frame = 0
-    const interval = setInterval(() => {
-      frame += 1
-      const resolved = frame * 0.6
-      setDisplay(
-        text
-          .split('')
-          .map((ch, i) => {
-            if (ch === ' ' || i < resolved) return ch
-            return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
-          })
-          .join(''),
-      )
-      if (resolved >= text.length) {
-        clearInterval(interval)
-        setDisplay(text)
-      }
-    }, 28)
-    return () => clearInterval(interval)
-  }, [inView, text])
-
-  return <span ref={ref}>{display}</span>
-}
-
-export function SectionHeading({ tag, title, accent }) {
+export function Section({ id, title, note, children }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.5 }}
-      className="mb-12"
+    <section
+      id={id}
+      aria-labelledby={`${id}-title`}
+      style={tintStyle(tintOf(id))}
+      className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16"
     >
-      <p className="section-tag mb-2">
-        <span className="mr-2 text-mist/50">//</span>
-        {tag}
-      </p>
-      <h2 className="glitch font-display text-3xl font-bold sm:text-4xl" data-text={`${title} ${accent}`}>
-        <ScrambleText text={title} /> <span className="text-neon"><ScrambleText text={accent} /></span>
-      </h2>
-      <div className="mt-4 h-px w-24 bg-gradient-to-r from-neon to-transparent" />
-    </motion.div>
+      <header className="band mb-10">
+        <h2 id={`${id}-title`} className="display">
+          {title}
+        </h2>
+        {note && <p>{note}</p>}
+      </header>
+      {children}
+    </section>
   )
 }
 
-export function Reveal({ children, delay = 0, className = '' }) {
+// Shared "when | what" row used by experience, projects, research and education.
+export function Entry({ aside, children, as: Tag = 'li' }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <Tag className="grid gap-x-10 gap-y-4 border-t border-rule py-9 first:border-t-0 first:pt-0 last:pb-0 md:grid-cols-[13.5rem_minmax(0,1fr)]">
+      <div className="flex flex-col items-start gap-2">{aside}</div>
+      <div className="min-w-0">{children}</div>
+    </Tag>
+  )
+}
+
+export function Points({ items }) {
+  return (
+    <ul className="prose-measure mt-4 grid list-disc gap-3 pl-5 marker:text-muted">
+      {items.map((p) => (
+        <li key={p}>{p}</li>
+      ))}
+    </ul>
   )
 }
