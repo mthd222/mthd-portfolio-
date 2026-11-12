@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Section } from './Section.jsx'
+import { Section, Reveal } from './Section.jsx'
 import { profile, interests, languages } from '../data/resume.js'
 import { splitOnDash } from '../sections.js'
 import Icon from './Icons.jsx'
@@ -28,7 +28,7 @@ function ContactForm() {
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-5">
+    <Reveal as="form" delay={1} onSubmit={submit} className="grid gap-5">
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="grid gap-1.5">
           <span className="font-semibold">Your name</span>
@@ -78,7 +78,7 @@ function ContactForm() {
             : 'This opens a draft in your own email app. Nothing is stored on this site.'}
         </p>
       </div>
-    </form>
+    </Reveal>
   )
 }
 
@@ -101,7 +101,7 @@ export default function Contact() {
   return (
     <Section id="contact" title="Contact" note={splitOnDash(profile.availability)[0]}>
       <div className="grid gap-x-14 gap-y-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)]">
-        <div>
+        <Reveal>
           <p className="flex items-start gap-3 text-xl leading-snug font-medium">
             <span className="live-dot mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-ink" aria-hidden="true" />
             {profile.availability}
@@ -129,15 +129,15 @@ export default function Contact() {
               )
             })}
           </ul>
-        </div>
+        </Reveal>
 
         <ContactForm />
       </div>
 
-      <div className="mt-14 grid gap-x-14 gap-y-8 sm:grid-cols-2">
+      <Reveal className="mt-14 grid gap-x-14 gap-y-8 sm:grid-cols-2">
         <ChipList title="Outside work" items={interests} />
         <ChipList title="Languages" items={languages} />
-      </div>
+      </Reveal>
     </Section>
   )
 }

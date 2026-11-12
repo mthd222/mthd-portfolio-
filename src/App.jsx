@@ -9,11 +9,15 @@ import Education from './components/Education.jsx'
 import Terminal from './components/Terminal.jsx'
 import Contact from './components/Contact.jsx'
 import BackToTop from './components/BackToTop.jsx'
+import NetworkMap from './components/NetworkMap.jsx'
+import CaptureToggle from './components/CaptureToggle.jsx'
+import { prefersReducedMotion } from './motion.js'
 import { profile } from './data/resume.js'
 
 export default function App() {
   return (
     <>
+      <NetworkMap />
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -31,11 +35,12 @@ export default function App() {
       </main>
 
       <footer className="mt-8 border-t border-rule">
-        <div className="mx-auto flex max-w-6xl flex-wrap justify-between gap-x-8 gap-y-2 px-5 py-8 text-muted sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-8 text-muted sm:px-8">
           <p>
             © {new Date().getFullYear()} {profile.name}
           </p>
           <p>Row colours borrowed from Wireshark's default colouring rules.</p>
+          {!prefersReducedMotion() && <CaptureToggle className="-ml-2" />}
         </div>
       </footer>
       <BackToTop />

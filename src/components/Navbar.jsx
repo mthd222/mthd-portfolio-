@@ -1,19 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import { SECTIONS, tintStyle } from '../sections.js'
+import { prefersReducedMotion } from '../motion.js'
 import Logo from './Logo.jsx'
 import Icon from './Icons.jsx'
 
 function useShift() {
-  const [shift, setShift] = useState(() => document.documentElement.dataset.shift || 'day')
-  const toggle = () => {
+  const [shift, setShift] = useState(() => document.documentElement.dataset.shift || 'night')
+  const toggle = (e) => {
     const next = shift === 'night' ? 'day' : 'night'
-    document.documentElement.dataset.shift = next
     try {
       localStorage.setItem('shift', next)
     } catch {
       // private mode: the choice just lasts for this visit
     }
-    setShift(next)
+    const apply = () => {
+      document.documentElement.dataset.shift = next
+      setShift(next)
+    }
+    if (!document.startViewTransition || prefersReducedMotion()) {
+      apply()
+      return
+    }
+    // The new colours open out in a circle from the toggle button.
+    const box = e.currentTarget.getBoundingClientRect()
+    const x = box.left + box.width / 2
+    const y = box.top + box.height / 2
+    const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y))
+    const transition = document.startViewTransition(() => flushSync(apply))
+    transition.ready
+      .then(() => {
+        document.documentElement.animate(
+          { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+          { duration: 560, easing: 'cubic-bezier(0.2, 0.7, 0.2, 1)', pseudoElement: '::view-transition-new(root)' },
+        )
+      })
+      .catch(() => {})
   }
   return [shift, toggle]
 }
@@ -42,8 +64,15 @@ export default function Navbar() {
   const [shift, toggleShift] = useShift()
   const active = useActiveSection()
 
+  const progressRef = useRef(null)
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8)
+      const range = document.documentElement.scrollHeight - window.innerHeight
+      const done = range > 0 ? Math.min(1, window.scrollY / range) : 0
+      progressRef.current?.style.setProperty('--p', `${(done * 100).toFixed(2)}%`)
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -158,6 +187,7 @@ export default function Navbar() {
           </ul>
         </nav>
       )}
+      <div ref={progressRef} className="scan-progress" aria-hidden="true" />
     </header>
   )
 }

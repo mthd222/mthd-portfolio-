@@ -80,6 +80,8 @@ const PATHS = {
     </>
   ),
   terminal: <path d="M4 17l6-6-6-6M12 19h8" />,
+  pause: <path d="M8 5v14M16 5v14" />,
+  play: <path d="M7 4.500v15l12-7.500z" />,
 }
 
 export default function Icon({ name, size = 20, className = '' }) {

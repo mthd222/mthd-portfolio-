@@ -38,12 +38,36 @@
   --font-body: "Instrument Sans Variable", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
 }
 
+/*
+ * Signal colours: the protocol tints at a strength that reads as a thin mark
+ * on the page ground. Used by the background map and the scroll progress bar.
+ */
 :root {
   color-scheme: light;
+  --sig-tcp: #6d68d8;
+  --sig-udp: #2f86cf;
+  --sig-http: #4f9a12;
+  --sig-arp: #b9820c;
+  --sig-icmp: #b84ac8;
+  --sig-smb: #9a9a12;
+  --sig-probe: #c62828;
+  --sig-open: #3f8f0e;
+  --map-line: rgb(18 39 46 / 0.11);
+  --map-node: rgb(18 39 46 / 0.36);
 }
 
 :root[data-shift="night"] {
   color-scheme: dark;
+  --sig-tcp: #b9b6ff;
+  --sig-udp: #9fd2ff;
+  --sig-http: #c5f58f;
+  --sig-arp: #f3d999;
+  --sig-icmp: #f3b3fb;
+  --sig-smb: #f2f39a;
+  --sig-probe: #f78787;
+  --sig-open: #b7f774;
+  --map-line: rgb(238 237 255 / 0.11);
+  --map-node: rgb(238 237 255 / 0.4);
   --color-paper: #12272e;
   --color-panel: #1a353e;
   --color-ink: #eeedff;
@@ -74,6 +98,37 @@ body {
 ::selection {
   background: var(--color-ink);
   color: var(--color-paper);
+}
+
+/* ---------- background network map ---------- */
+
+#root {
+  position: relative;
+  isolation: isolate;
+}
+/* Full strength in the page margins, dimmed behind the text column. */
+.netmap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  height: 100lvh;
+  pointer-events: none;
+  mask-image: linear-gradient(
+    90deg,
+    #000 max(0px, calc(50% - 41rem)),
+    rgb(0 0 0 / 0.5) max(0px, calc(50% - 34rem)),
+    rgb(0 0 0 / 0.5) min(100%, calc(50% + 34rem)),
+    #000 min(100%, calc(50% + 41rem))
+  );
+}
+/* On a phone everything sits over the map, so it steps further back. */
+@media (max-width: 48rem) {
+  .netmap {
+    opacity: 0.6;
+  }
 }
 
 :focus-visible {
@@ -340,12 +395,148 @@ a.packet:focus-visible {
   outline-color: var(--color-lime);
 }
 
+@keyframes line-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: none; }
+}
+.shell-line {
+  animation: line-in 180ms ease-out both;
+}
+
 @keyframes live {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.35; }
 }
 .live-dot {
   animation: live 1.8s ease-in-out infinite;
+}
+:root[data-capture="paused"] .live-dot {
+  animation: none;
+}
+
+/* ---------- motion ---------- */
+
+/* Scroll reveal. `--d` staggers siblings; set by the component. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 480ms ease-out,
+    transform 560ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--d, 0) * 80ms);
+}
+[data-reveal="row"] {
+  transform: translateX(-22px);
+}
+[data-reveal][data-seen] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Section header: the row is selected left to right, then a sheen crosses it. */
+[data-reveal="band"] {
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 100% 0 0 round 6px);
+  transition: clip-path 640ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+[data-reveal="band"][data-seen] {
+  clip-path: inset(0 0 0 0 round 6px);
+}
+[data-reveal="band"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 38%, rgb(255 255 255 / 0.8) 50%, transparent 62%);
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+[data-reveal="band"][data-seen]::after {
+  animation: sheen 900ms 380ms ease-out both;
+}
+@keyframes sheen {
+  to { transform: translateX(100%); }
+}
+
+/* Skill bars fill once their list is on screen. */
+.bar-fill {
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(160ms + var(--d, 0) * 90ms);
+}
+[data-seen] .bar-fill {
+  transform: none;
+}
+
+/* Hero load: copy rises, then the summary rows arrive one packet at a time. */
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-rise {
+  animation: rise-in 540ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(220ms + var(--d, 0) * 110ms);
+}
+@keyframes packet-in {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: none; }
+}
+.packets > li {
+  animation: packet-in 440ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: calc(480ms + var(--n, 0) * 90ms);
+}
+.packets > li:nth-child(2) { --n: 1; }
+.packets > li:nth-child(3) { --n: 2; }
+.packets > li:nth-child(4) { --n: 3; }
+.packets > li:nth-child(5) { --n: 4; }
+.packets > li:nth-child(6) { --n: 5; }
+
+/* How far down the capture the reader is; `--p` is set on scroll. */
+.scan-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--sig-tcp),
+    var(--sig-udp),
+    var(--sig-http),
+    var(--sig-arp),
+    var(--sig-icmp),
+    var(--sig-smb),
+    var(--sig-tcp)
+  );
+  clip-path: inset(0 calc(100% - var(--p, 0%)) 0 0);
+  pointer-events: none;
+}
+
+/* Shift change: the new colours open out from the toggle (see Navbar). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media print {
+  .netmap {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), print {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+  .bar-fill {
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

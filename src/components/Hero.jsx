@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { prefersReducedMotion, useCapturePaused } from '../motion.js'
+import CaptureToggle from './CaptureToggle.jsx'
 import { profile, experience, education, research, projects } from '../data/resume.js'
 import { tintStyle, stripLeadingSymbols, splitOnDash } from '../sections.js'
 import Icon from './Icons.jsx'
@@ -137,6 +139,66 @@ function Summary() {
           </a>
         </li>
       </ul>
+      <CaptureFeed />
+    </div>
+  )
+}
+
+// Live readout of the background map: packets delivered so far and the last
+// port the probe scanned. Decorative, so it is hidden from assistive tech.
+function CaptureFeed() {
+  const countRef = useRef(null)
+  const [probe, setProbe] = useState(null)
+  const [reduced] = useState(prefersReducedMotion)
+  const paused = useCapturePaused()
+
+  useEffect(() => {
+    let count = 0
+    const onPacket = () => {
+      count += 1
+      if (countRef.current) countRef.current.textContent = count.toLocaleString('en-US')
+    }
+    const onProbe = (e) => setProbe(e.detail)
+    window.addEventListener('capture:packet', onPacket)
+    window.addEventListener('capture:probe', onProbe)
+    return () => {
+      window.removeEventListener('capture:packet', onPacket)
+      window.removeEventListener('capture:probe', onProbe)
+    }
+  }, [])
+
+  if (reduced) {
+    return (
+      <p className="hex mt-4 text-[0.8125rem] text-muted" aria-hidden="true">
+        Capture paused: reduced motion is on.
+      </p>
+    )
+  }
+
+  return (
+    <div className="hero-rise mt-3 flex flex-wrap items-center justify-between gap-x-4" style={{ '--d': 8 }}>
+      <p
+        aria-hidden="true"
+        className="hex flex min-h-11 flex-wrap items-center gap-x-4 gap-y-1 py-1 text-[0.8125rem] text-muted"
+      >
+        <span className="inline-flex items-center gap-2">
+          <span className="live-dot h-2 w-2 rounded-full bg-alert" />
+          {paused ? 'paused' : 'capturing'}
+        </span>
+        <span className="whitespace-nowrap">
+          <span ref={countRef} className="text-ink">
+            0
+          </span>{' '}
+          packets
+        </span>
+        <span className="whitespace-nowrap">
+          probe{' '}
+          <span className="text-ink">
+            {probe ? `${probe.ip}:${probe.port} ${probe.service} ${probe.state}` : 'starting'}
+          </span>
+        </span>
+      </p>
+      <CaptureToggle className="-ml-2 sm:ml-0" />
     </div>
   )
 }
@@ -147,11 +209,11 @@ export default function Hero() {
       <div className="grid items-end gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
         <div>
           <FrameName name={profile.name} />
-          <p className="prose-measure mt-4 text-xl leading-snug font-medium sm:text-[1.375rem]">
+          <p className="prose-measure hero-rise mt-4 text-xl leading-snug font-medium sm:text-[1.375rem]">
             Cybersecurity intern in Bengaluru, working on SOC and XDR. I set up detection on Wazuh, and I
             test web apps and networks the way an attacker would.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="hero-rise mt-8 flex flex-wrap gap-3" style={{ '--d': 1 }}>
             <a href="#projects" className="btn btn-solid">
               See the projects
             </a>

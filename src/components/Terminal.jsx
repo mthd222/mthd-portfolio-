@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Section } from './Section.jsx'
+import { Section, Reveal } from './Section.jsx'
+import { prefersReducedMotion } from '../motion.js'
 import {
   profile, skillGroups, projects, experience, research,
   education, certifications, interests,
@@ -34,6 +35,9 @@ const HELP = [
 ]
 
 const QUICK = ['help', 'whoami', 'nmap', 'sudo hire_me']
+
+// Commands whose output arrives slowly, the way the real tools report.
+const SLOW = new Set(['nmap', 'sudo', 'wget', 'resume', 'download'])
 
 const PROMPT = 'visitor@milantej:~$ '
 
@@ -166,16 +170,46 @@ export default function Terminal() {
   const bodyRef = useRef(null)
   const inputRef = useRef(null)
 
+  const pending = useRef([])
+  const printer = useRef(0)
+
   useEffect(() => {
     if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight
   }, [history])
 
+  useEffect(() => () => clearInterval(printer.current), [])
+
+  // Output is printed a line at a time; a new command flushes whatever is left.
+  const flush = () => {
+    clearInterval(printer.current)
+    const rest = pending.current
+    pending.current = []
+    return rest
+  }
+
   const run = (raw) => {
     const out = runCommand(raw)
+    const rest = flush()
     if (out === null) {
       setHistory([])
     } else {
-      setHistory((h) => [...h, { text: raw, cls: 'text-white', prompt: true }, ...out])
+      const promptLine = { text: raw, cls: 'text-white', prompt: true }
+      if (prefersReducedMotion() || out.length < 2) {
+        setHistory((h) => [...h, ...rest, promptLine, ...out])
+      } else {
+        setHistory((h) => [...h, ...rest, promptLine])
+        pending.current = out
+        const cmd = raw.trim().split(/\s+/)[0].toLowerCase()
+        printer.current = setInterval(
+          () => {
+            const [line, ...later] = pending.current
+            pending.current = later
+            if (line) setHistory((h) => [...h, line])
+            if (!later.length) clearInterval(printer.current)
+          },
+          SLOW.has(cmd) ? 150 : 28,
+        )
+      }
     }
     if (raw.trim()) setCmdHistory((c) => [raw, ...c])
     setHistIdx(-1)
@@ -205,7 +239,7 @@ export default function Terminal() {
 
   return (
     <Section id="terminal" title="Shell" note="The same resume, for people who prefer a prompt">
-      <div className="shell overflow-hidden">
+      <Reveal className="shell overflow-hidden">
         <div
           ref={bodyRef}
           className="shell-body h-80 overflow-y-auto px-4 py-4 sm:h-96 sm:px-5"
@@ -215,7 +249,7 @@ export default function Terminal() {
         >
           <div role="log" aria-live="polite" aria-label="Shell output">
             {history.map((line, i) => (
-              <div key={i} className={`break-words whitespace-pre-wrap ${line.cls || 'text-shell-ink'}`}>
+              <div key={i} className={`shell-line break-words whitespace-pre-wrap ${line.cls || 'text-shell-ink'}`}>
                 {line.prompt && <Prompt />}
                 {line.text}
               </div>
@@ -258,7 +292,7 @@ export default function Terminal() {
             </button>
           ))}
         </div>
-      </div>
+      </Reveal>
     </Section>
   )
 }

@@ -1,4 +1,4 @@
-import { Section, Entry } from './Section.jsx'
+import { Section, Entry, Reveal } from './Section.jsx'
 import { education, certifications } from '../data/resume.js'
 import { stripLeadingSymbols, splitOnDash } from '../sections.js'
 import Icon from './Icons.jsx'
@@ -28,7 +28,7 @@ export default function Education() {
       </ol>
 
       {certifications.length > 0 && (
-        <div className="mt-12 grid gap-x-10 gap-y-3 md:grid-cols-[13.5rem_minmax(0,1fr)]">
+        <Reveal kind="row" className="mt-12 grid gap-x-10 gap-y-3 md:grid-cols-[13.5rem_minmax(0,1fr)]">
           <h3 className="text-lg font-semibold">Certifications</h3>
           <ul className="border-y border-rule">
             {certifications.map((cert) => (
@@ -41,7 +41,7 @@ export default function Education() {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       )}
     </Section>
   )

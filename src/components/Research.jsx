@@ -1,4 +1,4 @@
-import { Section, Points } from './Section.jsx'
+import { Section, Reveal, Points } from './Section.jsx'
 import { research } from '../data/resume.js'
 import { splitOnDash } from '../sections.js'
 
@@ -7,7 +7,7 @@ export default function Research() {
 
   return (
     <Section id="research" title="Research" note={`Published ${research.date}`}>
-      <article className="grid gap-x-10 gap-y-6 md:grid-cols-[13.5rem_minmax(0,1fr)]">
+      <Reveal as="article" kind="row" className="grid gap-x-10 gap-y-6 md:grid-cols-[13.5rem_minmax(0,1fr)]">
         <div className="tinted self-start rounded-md px-4 py-5">
           <p className="display text-3xl">{short}</p>
           <p className="mt-2 font-semibold">{research.date}</p>
@@ -18,7 +18,7 @@ export default function Research() {
           {full && <p className="mt-2 text-lg text-muted">{full}</p>}
           <Points items={research.points} />
         </div>
-      </article>
+      </Reveal>
     </Section>
   )
 }
