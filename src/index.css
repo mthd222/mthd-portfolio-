@@ -159,6 +159,93 @@ body::after {
   mask-image: radial-gradient(ellipse at center, rgb(0 0 0 / 0.28) 28%, #000 100%);
 }
 
+/* Mouse-only threat reticle. Native touch and reduced-motion behavior stays intact. */
+.threat-cursor { display: none; }
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :root[data-custom-cursor="active"] body,
+  :root[data-custom-cursor="active"] a,
+  :root[data-custom-cursor="active"] button,
+  :root[data-custom-cursor="active"] .frame-cell { cursor: none !important; }
+  :root[data-custom-cursor="active"] input,
+  :root[data-custom-cursor="active"] textarea,
+  :root[data-custom-cursor="active"] select { cursor: text !important; }
+  .threat-cursor {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 160ms ease;
+  }
+  :root[data-cursor-visible="true"] .threat-cursor { opacity: 1; }
+  .cursor-core,
+  .cursor-reticle {
+    position: fixed;
+    left: 0;
+    top: 0;
+    will-change: transform;
+    pointer-events: none;
+  }
+  .cursor-core {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-alert);
+    box-shadow: 0 0 9px var(--color-alert);
+  }
+  .cursor-reticle {
+    width: 30px;
+    height: 30px;
+    border: 1px solid color-mix(in srgb, var(--accent) 78%, transparent);
+    background:
+      linear-gradient(var(--accent), var(--accent)) 50% 0 / 1px 5px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 50% 100% / 1px 5px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 0 50% / 5px 1px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) 100% 50% / 5px 1px no-repeat;
+    box-shadow: 0 0 15px color-mix(in srgb, var(--accent) 12%, transparent), inset 0 0 12px color-mix(in srgb, var(--accent) 6%, transparent);
+    clip-path: polygon(0 0, 9px 0, 9px 1px, 21px 1px, 21px 0, 100% 0, 100% 9px, calc(100% - 1px) 9px, calc(100% - 1px) 21px, 100% 21px, 100% 100%, 21px 100%, 21px calc(100% - 1px), 9px calc(100% - 1px), 9px 100%, 0 100%, 0 21px, 1px 21px, 1px 9px, 0 9px);
+    transition: width 160ms ease, height 160ms ease, border-color 160ms ease, background-color 160ms ease;
+  }
+  .cursor-reticle::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1px dotted color-mix(in srgb, var(--cyan) 58%, transparent);
+    border-radius: 50%;
+    animation: reticle-spin 5s linear infinite;
+  }
+  .cursor-label {
+    position: absolute;
+    left: calc(100% + 7px);
+    top: 50%;
+    translate: 0 -50%;
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: 0.48rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    transition: opacity 140ms ease;
+  }
+  .cursor-reticle[data-target="true"] {
+    width: 42px;
+    height: 42px;
+    border-color: var(--cyan);
+    background-color: color-mix(in srgb, var(--cyan) 4%, transparent);
+  }
+  .cursor-reticle[data-target="true"] .cursor-label { opacity: 1; }
+  .cursor-reticle[data-field="true"] { opacity: 0; }
+  .cursor-core[data-field="true"] { opacity: 0; }
+  .cursor-reticle[data-click="true"] { animation: reticle-pulse 280ms cubic-bezier(0.16, 1, 0.3, 1); }
+  @keyframes reticle-spin { to { rotate: 360deg; } }
+  @keyframes reticle-pulse {
+    0% { scale: 1; }
+    45% { scale: 0.72; border-color: var(--color-alert); }
+    100% { scale: 1.35; opacity: 0; }
+  }
+}
+
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .skip-link {
   position: fixed;
@@ -211,17 +298,19 @@ body::after {
 }
 .brand-logo {
   display: block;
-  width: 7.4rem;
+  width: 7.9rem;
   height: auto;
   overflow: visible;
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 10%, transparent));
 }
-.brand-frame {
-  fill: none;
+.brand-badge {
+  fill: color-mix(in srgb, var(--color-panel) 92%, transparent);
   stroke: var(--accent);
   stroke-width: 3;
   vector-effect: non-scaling-stroke;
+  transition: fill 180ms ease, filter 180ms ease;
 }
+.brand-monogram { fill: var(--accent); transition: fill 180ms ease; }
 .brand-wordmark {
   fill: var(--color-ink);
   transition: fill 180ms ease, filter 180ms ease;
@@ -232,6 +321,11 @@ body::after {
   stroke-width: 3;
 }
 .brand-alert { fill: var(--color-alert); }
+.logo-link:hover .brand-badge {
+  fill: var(--accent);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent) 55%, transparent));
+}
+.logo-link:hover .brand-monogram { fill: #071008; }
 .logo-link:hover .brand-wordmark {
   fill: var(--accent);
   filter: drop-shadow(0 0 7px color-mix(in srgb, var(--accent) 68%, transparent));
@@ -773,7 +867,7 @@ main > section:not(.hero-section)::before {
   body::before { background-size: 32px 32px; }
   .frame-name { max-width: 100%; font-size: clamp(2.8rem, 15.5vw, 5.25rem); }
   .frame-row { max-width: 100%; }
-  .brand-logo { width: 6.6rem; }
+  .brand-logo { width: 7rem; }
   .band { padding: 1rem 1rem 1rem 4.1rem; }
   .band::before { left: 1rem; }
   .band-index { left: 1rem; }

@@ -11,6 +11,7 @@ import Contact from './components/Contact.jsx'
 import BackToTop from './components/BackToTop.jsx'
 import NetworkMap from './components/NetworkMap.jsx'
 import CaptureToggle from './components/CaptureToggle.jsx'
+import ThreatCursor from './components/ThreatCursor.jsx'
 import { prefersReducedMotion } from './motion.js'
 import { profile } from './data/resume.js'
 
@@ -18,6 +19,7 @@ export default function App() {
   return (
     <>
       <NetworkMap />
+      <ThreatCursor />
       <a href="#main" className="skip-link">
         Skip to content
       </a>

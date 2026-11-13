@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 64" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 64" role="img" aria-labelledby="title desc">
   <title id="title">MTHD logo</title>
-  <desc id="desc">Clean geometric MTHD cybersecurity wordmark with four corner brackets.</desc>
-  <path d="M2 18V2h16M166 2h16v16M182 46v16h-16M18 62H2V46" fill="none" stroke="#b8ff55" stroke-width="3"/>
-  <path fill="#ecffe5" fill-rule="evenodd" d="M12 49V15h8l10 14 10-14h8v34h-8V28L30 41 20 28v21Zm43-34h34v8H76v26h-8V23H55Zm40 0h8v13h14V15h8v34h-8V36h-14v13h-8Zm38 0h14c20 0 27 8 27 17s-7 17-27 17h-14Zm9 8v18h6c11 0 17-3 17-9s-6-9-17-9Z"/>
-  <path d="M10 56h76M98 56h38" stroke="#42e8d6" stroke-width="2"/>
-  <circle cx="174" cy="10" r="3.5" fill="#ff5f56"/>
+  <desc id="desc">MTHD cybersecurity wordmark with an angular M security badge and THD lettering.</desc>
+  <path d="M6 12 18 2h42l10 10v40L60 62H18L6 50Z" fill="#0a100c" stroke="#b8ff55" stroke-width="3"/>
+  <path d="M17 47V17h8l12 15 12-15h8v30h-8V29L37 43 25 29v18Z" fill="#b8ff55"/>
+  <path fill="#ecffe5" fill-rule="evenodd" d="M78 17h32v8H98v22h-8V25H78Zm38 0h8v11h12V17h8v30h-8V36h-12v11h-8Zm35 0h13c19 0 27 7 27 15s-8 15-27 15h-13Zm9 8v14h5c11 0 17-2 17-7s-6-7-17-7Z"/>
+  <path d="M13 54h49M78 54h66" stroke="#42e8d6" stroke-width="2"/>
+  <circle cx="61" cy="11" r="3.5" fill="#ff5f56"/>
 </svg>

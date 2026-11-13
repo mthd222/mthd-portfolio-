@@ -1,11 +1,12 @@
 export default function Logo({ className = '' }) {
   return (
     <span className={`brand-lockup ${className}`}>
-      <svg className="brand-logo" viewBox="0 0 184 64" aria-hidden="true" focusable="false">
-        <path className="brand-frame" d="M2 18V2h16M166 2h16v16M182 46v16h-16M18 62H2V46" />
-        <path className="brand-wordmark" fillRule="evenodd" d="M12 49V15h8l10 14 10-14h8v34h-8V28L30 41 20 28v21Zm43-34h34v8H76v26h-8V23H55Zm40 0h8v13h14V15h8v34h-8V36h-14v13h-8Zm38 0h14c20 0 27 8 27 17s-7 17-27 17h-14Zm9 8v18h6c11 0 17-3 17-9s-6-9-17-9Z" />
-        <path className="brand-signal" d="M10 56h76M98 56h38" />
-        <circle className="brand-alert" cx="174" cy="10" r="3.5" />
+      <svg className="brand-logo" viewBox="0 0 200 64" aria-hidden="true" focusable="false">
+        <path className="brand-badge" d="M6 12 18 2h42l10 10v40L60 62H18L6 50Z" />
+        <path className="brand-monogram" d="M17 47V17h8l12 15 12-15h8v30h-8V29L37 43 25 29v18Z" />
+        <path className="brand-wordmark" fillRule="evenodd" d="M78 17h32v8H98v22h-8V25H78Zm38 0h8v11h12V17h8v30h-8V36h-12v11h-8Zm35 0h13c19 0 27 7 27 15s-8 15-27 15h-13Zm9 8v14h5c11 0 17-2 17-7s-6-7-17-7Z" />
+        <path className="brand-signal" d="M13 54h49M78 54h66" />
+        <circle className="brand-alert" cx="61" cy="11" r="3.5" />
       </svg>
     </span>
   )
