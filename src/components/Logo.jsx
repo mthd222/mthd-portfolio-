@@ -1,12 +1,13 @@
 export default function Logo({ className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false">
-        <path d="M32 2 57 12v18c0 15-9.8 25.7-25 32C16.8 55.7 7 45 7 30V12L32 2Z" fill="var(--color-shell)" stroke="var(--accent)" strokeWidth="2" />
-        <path d="m19 24 8 8-8 8M31 40h14" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="square" strokeLinejoin="miter" />
-        <circle cx="47" cy="17" r="3" fill="var(--color-alert)" />
+    <span className={`brand-lockup ${className}`}>
+      <svg className="brand-logo" viewBox="0 0 184 96" aria-hidden="true" focusable="false">
+        <path className="brand-frame" d="M2 2h164l16 16v76H18L2 78Z" />
+        <path className="brand-wordmark" d="M16 68V28l14 20 14-20v40M58 28h32M74 28v40M102 28v40M130 28v40M102 48h28M144 28v40h12c18 0 18-40 0-40Z" />
+        <path className="brand-signal" d="M9 13h24M151 82h22" />
+        <circle className="brand-alert" cx="168" cy="13" r="4" />
       </svg>
-      <span className="display text-lg">mthd222</span>
+      <span className="brand-caption" aria-hidden="true">OFFSEC // SOC</span>
     </span>
   )
 }

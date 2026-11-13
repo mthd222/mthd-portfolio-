@@ -1,9 +1,10 @@
-import { tintOf, tintStyle } from '../sections.js'
+import { SECTIONS, tintOf, tintStyle } from '../sections.js'
 import { useSeen, useDecode } from '../motion.js'
 
 export function Section({ id, title, note, children }) {
   const [ref, seen] = useSeen()
   const decoded = useDecode(title, seen)
+  const sectionNumber = String(SECTIONS.findIndex((section) => section.id === id) + 1).padStart(2, '0')
 
   return (
     <section
@@ -14,6 +15,7 @@ export function Section({ id, title, note, children }) {
       className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16"
     >
       <header className="band mb-10" data-reveal="band" data-seen={seen || undefined}>
+        <span className="band-index" aria-hidden="true">{sectionNumber}</span>
         <h2 id={`${id}-title`} className="display">
           <span className="sr-only">{title}</span>
           <span aria-hidden="true">{decoded}</span>

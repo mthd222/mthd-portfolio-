@@ -17,7 +17,7 @@ export default function BackToTop() {
     <a
       href="#top"
       aria-label="Back to top"
-      className="fixed right-4 bottom-4 z-30 grid h-12 w-12 place-items-center rounded-md border-2 border-ink bg-paper text-ink shadow-[0_2px_0_var(--color-ink)] transition-colors hover:bg-ink hover:text-paper sm:right-6 sm:bottom-6"
+      className="back-to-top fixed right-4 bottom-4 z-30 grid h-12 w-12 place-items-center border border-rule bg-paper text-ink transition-colors sm:right-6 sm:bottom-6"
     >
       <Icon name="up" />
     </a>

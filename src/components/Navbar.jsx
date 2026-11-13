@@ -91,16 +91,16 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-40 border-b transition-colors ${
         open ? 'bg-paper' : 'bg-paper/92 backdrop-blur-sm'
-      } ${scrolled || open ? 'border-rule' : 'border-transparent'}`}
+      } ${scrolled || open ? 'border-rule' : 'border-transparent'} site-header`}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center gap-2 px-5 sm:px-8">
-        <a href="#top" aria-label="Milan Tej H D, back to top" className="mr-auto rounded py-2">
+      <div className="nav-shell mx-auto flex h-16 max-w-6xl items-center gap-2 px-5 sm:px-8">
+        <a href="#top" aria-label="MTHD, back to top" className="logo-link mr-auto py-2">
           <Logo />
         </a>
 
         <nav aria-label="Sections" className="hidden lg:block">
           <ul className="flex items-center gap-0.5">
-            {SECTIONS.map(({ id, label, tint }) => {
+            {SECTIONS.map(({ id, label, tint }, index) => {
               const current = active === id
               return (
                 <li key={id}>
@@ -108,10 +108,11 @@ export default function Navbar() {
                     href={`#${id}`}
                     aria-current={current ? 'true' : undefined}
                     style={tintStyle(tint)}
-                    className={`block rounded px-3 py-2 text-[0.9375rem] font-medium transition-colors ${
+                    className={`nav-link block px-2.5 py-2 text-[0.8125rem] font-medium transition-colors ${
                       current ? 'tinted' : 'hover:bg-ink/8'
                     }`}
                   >
+                    <span className="nav-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                     {label}
                   </a>
                 </li>
@@ -125,7 +126,7 @@ export default function Navbar() {
           onClick={toggleShift}
           aria-label={night ? 'Switch to day shift (light colours)' : 'Switch to night shift (dark colours)'}
           title={night ? 'Day shift' : 'Night shift'}
-          className="grid h-11 w-11 place-items-center rounded transition-colors hover:bg-ink/8"
+          className="icon-button grid h-11 w-11 place-items-center transition-colors hover:bg-ink/8"
         >
           <Icon name={night ? 'sun' : 'moon'} />
         </button>
@@ -145,7 +146,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? 'Close menu' : 'Open menu'}
-          className="grid h-11 w-11 place-items-center rounded transition-colors hover:bg-ink/8 lg:hidden"
+          className="icon-button grid h-11 w-11 place-items-center transition-colors hover:bg-ink/8 lg:hidden"
         >
           <Icon name={open ? 'close' : 'menu'} />
         </button>
@@ -158,17 +159,17 @@ export default function Navbar() {
           className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule lg:hidden"
         >
           <ul className="mx-auto grid max-w-6xl gap-0.5 px-5 py-3 sm:grid-cols-2 sm:px-8">
-            {SECTIONS.map(({ id, label, tint }) => (
+            {SECTIONS.map(({ id, label, tint }, index) => (
               <li key={id}>
                 <a
                   href={`#${id}`}
                   onClick={() => setOpen(false)}
                   style={tintStyle(tint)}
-                  className={`flex min-h-12 items-center gap-3 rounded px-3 font-medium ${
+                  className={`mobile-nav-link flex min-h-12 items-center gap-3 px-3 font-medium ${
                     active === id ? 'tinted' : 'hover:bg-ink/8'
                   }`}
                 >
-                  <span className="h-3.5 w-3.5 rounded-sm border border-fixed/25 bg-(--tint)" aria-hidden="true" />
+                  <span className="nav-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                   {label}
                 </a>
               </li>

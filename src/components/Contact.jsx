@@ -9,8 +9,8 @@ const bare = (url = '') => url.replace(/^https?:\/\/(www\.)?/, '')
 const CHANNELS = [
   { label: 'Email', value: profile.email, href: `mailto:${profile.email}`, icon: 'mail' },
   { label: 'WhatsApp', value: 'Start a chat', href: profile.whatsapp, icon: 'chat' },
-  { label: 'LinkedIn', value: bare(profile.linkedin), href: profile.linkedin, icon: 'linkedin' },
-  { label: 'GitHub', value: bare(profile.github), href: profile.github, icon: 'github' },
+  { label: 'LinkedIn', value: bare(profile.linkedin), href: profile.linkedin, icon: 'linkedin', identity: true },
+  { label: 'GitHub', value: bare(profile.github), href: profile.github, icon: 'github', identity: true },
 ]
 
 function ContactForm() {
@@ -115,8 +115,8 @@ export default function Contact() {
                   <a
                     href={channel.href}
                     target={external ? '_blank' : undefined}
-                    rel={external ? 'noreferrer noopener' : undefined}
-                    className="group flex min-h-14 items-center gap-3.5 py-2.5"
+                    rel={external ? `${channel.identity ? 'me ' : ''}noreferrer noopener` : undefined}
+                    className="contact-link group flex min-h-14 items-center gap-3.5 px-2 py-2.5"
                   >
                     <Icon name={channel.icon} size={22} />
                     <span className="w-24 shrink-0 font-semibold">{channel.label}</span>

@@ -64,9 +64,15 @@ function FrameName({ name }) {
           ))}
         </span>
       </h1>
+      <p className="hero-alias hero-rise" aria-label="Also known as MTHD and mthd222">
+        <span>identity</span>
+        <strong>MTHD</strong>
+        <i aria-hidden="true">//</i>
+        <strong>@mthd222</strong>
+      </p>
       <p
         aria-hidden="true"
-        className="hex mt-5 flex min-h-12 flex-wrap content-start gap-x-5 gap-y-1 text-[0.8125rem] text-muted"
+        className="hex mt-3 flex min-h-12 flex-wrap content-start gap-x-5 gap-y-1 text-[0.8125rem] text-muted"
       >
         <Readout byte={active === null ? null : bytes[active]} total={bytes.length} />
       </p>
