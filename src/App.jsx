@@ -39,7 +39,7 @@ export default function App() {
           <p>
             © {new Date().getFullYear()} {profile.name}
           </p>
-          <p>Row colours borrowed from Wireshark's default colouring rules.</p>
+          <p>NIGHT//OPS interface · signal integrity maintained.</p>
           {!prefersReducedMotion() && <CaptureToggle className="-ml-2" />}
         </div>
       </footer>

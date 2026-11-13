@@ -205,9 +205,10 @@ function CaptureFeed() {
 
 export default function Hero() {
   return (
-    <section id="top" className="mx-auto max-w-6xl px-5 pt-10 pb-14 sm:px-8 sm:pt-16 lg:pb-20">
+    <section id="top" className="hero-section mx-auto max-w-6xl px-5 pt-10 pb-14 sm:px-8 sm:pt-16 lg:pb-20">
       <div className="grid items-end gap-x-12 gap-y-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
         <div>
+          <p className="hero-kicker hero-rise">Offensive security / detection engineering</p>
           <FrameName name={profile.name} />
           <p className="prose-measure hero-rise mt-4 text-xl leading-snug font-medium sm:text-[1.375rem]">
             Cybersecurity intern in Bengaluru, working on SOC and XDR. I set up detection on Wazuh, and I

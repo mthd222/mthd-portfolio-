@@ -2,10 +2,9 @@ export default function Logo({ className = '' }) {
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false">
-        <rect x="1" y="1" width="62" height="62" rx="12" fill="var(--color-shell)" stroke="var(--color-rule)" strokeWidth="2" />
-        <rect x="12" y="14" width="40" height="10" rx="2" fill="var(--color-tcp)" />
-        <rect x="12" y="27" width="40" height="10" rx="2" fill="var(--color-http)" />
-        <rect x="12" y="40" width="40" height="10" rx="2" fill="var(--color-icmp)" />
+        <path d="M32 2 57 12v18c0 15-9.8 25.7-25 32C16.8 55.7 7 45 7 30V12L32 2Z" fill="var(--color-shell)" stroke="var(--accent)" strokeWidth="2" />
+        <path d="m19 24 8 8-8 8M31 40h14" fill="none" stroke="var(--accent)" strokeWidth="4" strokeLinecap="square" strokeLinejoin="miter" />
+        <circle cx="47" cy="17" r="3" fill="var(--color-alert)" />
       </svg>
       <span className="display text-lg">mthd222</span>
     </span>
