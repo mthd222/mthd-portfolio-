@@ -206,31 +206,25 @@ body::after {
 .nav-shell { position: relative; }
 .logo-link { color: var(--color-ink); }
 .brand-lockup {
-  display: inline-grid;
-  grid-template-columns: auto auto;
+  display: inline-flex;
   align-items: center;
-  column-gap: 0.65rem;
 }
 .brand-logo {
   display: block;
-  width: 6.9rem;
+  width: 7.4rem;
   height: auto;
   overflow: visible;
   filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 10%, transparent));
 }
 .brand-frame {
-  fill: color-mix(in srgb, var(--color-shell) 94%, transparent);
+  fill: none;
   stroke: var(--accent);
   stroke-width: 3;
   vector-effect: non-scaling-stroke;
 }
 .brand-wordmark {
-  fill: none;
-  stroke: var(--color-ink);
-  stroke-width: 7;
-  stroke-linecap: square;
-  stroke-linejoin: miter;
-  transition: stroke 180ms ease, filter 180ms ease;
+  fill: var(--color-ink);
+  transition: fill 180ms ease, filter 180ms ease;
 }
 .brand-signal {
   fill: none;
@@ -238,17 +232,8 @@ body::after {
   stroke-width: 3;
 }
 .brand-alert { fill: var(--color-alert); }
-.brand-caption {
-  color: var(--color-muted);
-  font-family: var(--font-mono);
-  font-size: 0.56rem;
-  font-weight: 650;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
-  writing-mode: vertical-rl;
-}
 .logo-link:hover .brand-wordmark {
-  stroke: var(--accent);
+  fill: var(--accent);
   filter: drop-shadow(0 0 7px color-mix(in srgb, var(--accent) 68%, transparent));
 }
 .nav-link {
@@ -788,8 +773,7 @@ main > section:not(.hero-section)::before {
   body::before { background-size: 32px 32px; }
   .frame-name { max-width: 100%; font-size: clamp(2.8rem, 15.5vw, 5.25rem); }
   .frame-row { max-width: 100%; }
-  .brand-logo { width: 6.2rem; }
-  .brand-caption { display: none; }
+  .brand-logo { width: 6.6rem; }
   .band { padding: 1rem 1rem 1rem 4.1rem; }
   .band::before { left: 1rem; }
   .band-index { left: 1rem; }

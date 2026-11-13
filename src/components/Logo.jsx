@@ -1,13 +1,12 @@
 export default function Logo({ className = '' }) {
   return (
     <span className={`brand-lockup ${className}`}>
-      <svg className="brand-logo" viewBox="0 0 184 96" aria-hidden="true" focusable="false">
-        <path className="brand-frame" d="M2 2h164l16 16v76H18L2 78Z" />
-        <path className="brand-wordmark" d="M16 68V28l14 20 14-20v40M58 28h32M74 28v40M102 28v40M130 28v40M102 48h28M144 28v40h12c18 0 18-40 0-40Z" />
-        <path className="brand-signal" d="M9 13h24M151 82h22" />
-        <circle className="brand-alert" cx="168" cy="13" r="4" />
+      <svg className="brand-logo" viewBox="0 0 184 64" aria-hidden="true" focusable="false">
+        <path className="brand-frame" d="M2 18V2h16M166 2h16v16M182 46v16h-16M18 62H2V46" />
+        <path className="brand-wordmark" fillRule="evenodd" d="M12 49V15h8l10 14 10-14h8v34h-8V28L30 41 20 28v21Zm43-34h34v8H76v26h-8V23H55Zm40 0h8v13h14V15h8v34h-8V36h-14v13h-8Zm38 0h14c20 0 27 8 27 17s-7 17-27 17h-14Zm9 8v18h6c11 0 17-3 17-9s-6-9-17-9Z" />
+        <path className="brand-signal" d="M10 56h76M98 56h38" />
+        <circle className="brand-alert" cx="174" cy="10" r="3.5" />
       </svg>
-      <span className="brand-caption" aria-hidden="true">OFFSEC // SOC</span>
     </span>
   )
 }

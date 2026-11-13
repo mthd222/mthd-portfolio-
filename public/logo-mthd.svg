@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 96" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 184 64" role="img" aria-labelledby="title desc">
   <title id="title">MTHD logo</title>
-  <desc id="desc">Angular MTHD cybersecurity wordmark in phosphor green and white.</desc>
-  <path d="M2 2h164l16 16v76H18L2 78Z" fill="#050806" stroke="#b8ff55" stroke-width="4"/>
-  <path d="M16 68V28l14 20 14-20v40M58 28h32M74 28v40M102 28v40M130 28v40M102 48h28M144 28v40h12c18 0 18-40 0-40Z" fill="none" stroke="#ecffe5" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/>
-  <path d="M9 13h24M151 82h22" stroke="#42e8d6" stroke-width="3"/>
-  <circle cx="168" cy="13" r="5" fill="#ff5f56"/>
+  <desc id="desc">Clean geometric MTHD cybersecurity wordmark with four corner brackets.</desc>
+  <path d="M2 18V2h16M166 2h16v16M182 46v16h-16M18 62H2V46" fill="none" stroke="#b8ff55" stroke-width="3"/>
+  <path fill="#ecffe5" fill-rule="evenodd" d="M12 49V15h8l10 14 10-14h8v34h-8V28L30 41 20 28v21Zm43-34h34v8H76v26h-8V23H55Zm40 0h8v13h14V15h8v34h-8V36h-14v13h-8Zm38 0h14c20 0 27 8 27 17s-7 17-27 17h-14Zm9 8v18h6c11 0 17-3 17-9s-6-9-17-9Z"/>
+  <path d="M10 56h76M98 56h38" stroke="#42e8d6" stroke-width="2"/>
+  <circle cx="174" cy="10" r="3.5" fill="#ff5f56"/>
 </svg>
