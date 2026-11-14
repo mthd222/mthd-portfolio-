@@ -10,12 +10,15 @@ import Terminal from './components/Terminal.jsx'
 import Contact from './components/Contact.jsx'
 import BackToTop from './components/BackToTop.jsx'
 import ThreatCursor from './components/ThreatCursor.jsx'
+import AttackSurface from './components/AttackSurface.jsx'
+import Methodology from './components/Methodology.jsx'
 import { profile } from './data/resume.js'
 
 export default function App() {
   return (
     <>
       <ThreatCursor />
+      <AttackSurface />
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -23,21 +26,22 @@ export default function App() {
       <main id="main">
         <Hero />
         <About />
-        <Skills />
-        <Experience />
         <Projects />
+        <Experience />
+        <Methodology />
+        <Skills />
         <Research />
         <Education />
         <Terminal />
         <Contact />
       </main>
 
-      <footer className="mt-8 border-t border-rule">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-8 text-muted sm:px-8">
+      <footer className="site-footer">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-8 text-muted sm:px-8">
           <p>
-            © {new Date().getFullYear()} {profile.name}
+            © {new Date().getFullYear()} {profile.name} <span className="footer-alias">// MTHD</span>
           </p>
-          <p>NIGHT//OPS interface · signal integrity maintained.</p>
+          <p>Designed as a field dossier. Built for clarity, evidence, and speed.</p>
         </div>
       </footer>
       <BackToTop />

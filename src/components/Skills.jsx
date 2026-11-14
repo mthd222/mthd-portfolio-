@@ -1,51 +1,65 @@
 import { Section, Reveal } from './Section.jsx'
-import { skillRadar, skillGroups } from '../data/resume.js'
-import Icon from './Icons.jsx'
+
+const CAPABILITIES = [
+  {
+    level: 'Professional exposure',
+    title: 'SOC & detection engineering',
+    context: 'Applied during cybersecurity internships and controlled SOC lab work.',
+    skills: ['Wazuh SIEM / XDR', 'TrendMicro', 'Qualys', 'Log correlation', 'Alert triage', 'Detection logic'],
+  },
+  {
+    level: 'Built & validated',
+    title: 'Application security',
+    context: 'Used to design, test, and document security controls in project environments.',
+    skills: ['OWASP Top 10', 'Burp Suite', 'OWASP ZAP', 'Postman', 'Authentication testing', 'CSRF / XSS / SQLi'],
+  },
+  {
+    level: 'Project & lab practice',
+    title: 'Network and offensive testing',
+    context: 'Used across reconnaissance, protocol analysis, exploit validation, and reporting.',
+    skills: ['Nmap', 'Wireshark', 'Metasploit', 'Netcat', 'TCP/IP', 'WireGuard', 'Kali Linux'],
+  },
+  {
+    level: 'Engineering foundation',
+    title: 'Automation & secure systems',
+    context: 'Used to build repeatable tools, secure applications, and supporting infrastructure.',
+    skills: ['Python', 'Flask', 'Bash', 'SQL', 'Linux', 'SQLite', 'REST APIs'],
+  },
+  {
+    level: 'Analysis & communication',
+    title: 'Threat modelling and reporting',
+    context: 'Used to connect technical evidence with risk, remediation, and stakeholder decisions.',
+    skills: ['STRIDE', 'MITRE ATT&CK', 'CVSS', 'Attack surface mapping', 'Executive summaries', 'Remediation guidance'],
+  },
+  {
+    level: 'Developing depth',
+    title: 'Red team craft',
+    context: 'Continuing hands-on development through labs, research, and purpose-built projects.',
+    skills: ['Privilege escalation', 'Post-exploitation', 'Exploit scripting', 'Active Directory basics', 'CTFs'],
+  },
+]
 
 export default function Skills() {
-  const total = skillGroups.reduce((n, g) => n + g.skills.length, 0)
-  const ranked = [...skillRadar].sort((a, b) => b.value - a.value)
-
   return (
-    <Section id="skills" title="Skills" note={`${total} skills in ${skillGroups.length} groups`}>
-      <Reveal className="max-w-3xl">
-        <h3 className="text-lg font-semibold">Where I am strongest</h3>
-        <p className="text-muted">Self-assessed, out of 100.</p>
-        <ul className="mt-5 grid gap-3">
-          {ranked.map(({ axis, value }, i) => (
-            <li key={axis} className="grid items-center gap-x-5 gap-y-1 sm:grid-cols-[12.5rem_minmax(0,1fr)]">
-              <span className="font-medium">{axis}</span>
-              <span className="flex items-center gap-3">
-                <span aria-hidden="true" className="h-6 flex-1 rounded-sm bg-ink/8">
-                  <span
-                    className="bar-fill block h-full rounded-sm border-[1.5px] border-ink bg-(--tint)"
-                    style={{ width: `${value}%`, '--d': i }}
-                  />
-                </span>
-                <span className="hex w-8 text-right">{value}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
+    <Section id="skills" title="Capabilities" note="Evidence-based, not percentage-based">
+      <Reveal className="capability-intro">
+        <p className="section-lead">
+          Capability is shown by where I used it: professional exposure, completed builds, controlled labs,
+          published analysis, or active development.
+        </p>
       </Reveal>
 
-      <h3 className="mt-14 text-lg font-semibold">Everything I work with</h3>
-      <div className="mt-5 grid grid-cols-1 gap-x-3 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-        {skillGroups.map((group, i) => (
-          <Reveal as="section" key={group.title} delay={i % 4} aria-label={group.title}>
-            <h4 className="tinted flex min-h-12 items-center gap-2.5 rounded px-3 py-2.5 leading-tight font-semibold sm:min-h-16">
-              <Icon name={group.icon} />
-              <span className="flex-1">{group.title}</span>
-              <span className="hex text-sm" aria-label={`${group.skills.length} skills`}>
-                {group.skills.length}
-              </span>
-            </h4>
-            <ul className="mt-1.5 flex flex-wrap gap-1.5 sm:grid">
-              {group.skills.map((skill) => (
-                <li key={skill} className="cell">
-                  {skill}
-                </li>
-              ))}
+      <div className="capability-grid">
+        {CAPABILITIES.map((group, index) => (
+          <Reveal as="article" key={group.title} className="capability-card" delay={index % 3}>
+            <div className="capability-card-head">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{group.level}</p>
+            </div>
+            <h3>{group.title}</h3>
+            <p className="capability-context">{group.context}</p>
+            <ul className="skill-cluster">
+              {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
             </ul>
           </Reveal>
         ))}

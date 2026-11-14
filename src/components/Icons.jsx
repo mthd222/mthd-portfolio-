@@ -73,6 +73,7 @@ const PATHS = {
   menu: <path d="M3 6h18M3 12h18M3 18h18" />,
   close: <path d="M5 5l14 14M19 5L5 19" />,
   up: <path d="M12 19V5M5 12l7-7 7 7" />,
+  down: <path d="M12 5v14M5 12l7 7 7-7" />,
   medal: (
     <>
       <circle cx="12" cy="8" r="6" />
