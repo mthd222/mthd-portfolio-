@@ -22,8 +22,11 @@ export default function Hero() {
 
           <p className="hero-kicker hero-rise">Cybersecurity practitioner · Offensive testing · Detection engineering</p>
           <h1 className="hero-title">
-            <span>Milan Tej</span>
-            <strong>H D</strong>
+            <span className="hero-name-primary">Milan</span>
+            <span className="hero-name-secondary">
+              <strong>Tej H D</strong>
+              <i aria-hidden="true">MTHD // 222</i>
+            </span>
           </h1>
 
           <p className="hero-deck hero-rise">
@@ -67,6 +70,14 @@ export default function Hero() {
             <span>CURRENT ASSIGNMENT</span>
             <strong>{current?.role}</strong>
             <p>{current?.company}</p>
+          </div>
+          <div className="operator-achievement">
+            <Icon name="medal" size={25} />
+            <div>
+              <span>ACADEMIC DISTINCTION</span>
+              <strong>Silver Medalist</strong>
+              <p>MCA · 2nd in batch · {education[0]?.score}</p>
+            </div>
           </div>
           <div className="focus-grid">
             <div><span>01</span><strong>VAPT</strong><p>Web & network validation</p></div>
