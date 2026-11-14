@@ -28,7 +28,13 @@ export default function ThreatCursor() {
       currentX += (targetX - currentX) * 0.2
       currentY += (targetY - currentY) * 0.2
       reticle.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`
-      frameId = requestAnimationFrame(render)
+      if (Math.abs(targetX - currentX) > 0.1 || Math.abs(targetY - currentY) > 0.1) {
+        frameId = requestAnimationFrame(render)
+      } else {
+        currentX = targetX
+        currentY = targetY
+        frameId = 0
+      }
     }
 
     const onMove = (event) => {
@@ -42,6 +48,7 @@ export default function ThreatCursor() {
       const overField = element?.closest(FIELDS) ? 'true' : 'false'
       reticle.dataset.field = overField
       core.dataset.field = overField
+      if (!frameId) frameId = requestAnimationFrame(render)
     }
 
     const onDown = () => {
@@ -56,8 +63,6 @@ export default function ThreatCursor() {
     document.addEventListener('pointerdown', onDown, { passive: true })
     document.addEventListener('mouseleave', onLeave)
     document.addEventListener('mouseenter', onEnter)
-    frameId = requestAnimationFrame(render)
-
     return () => {
       cancelAnimationFrame(frameId)
       clearTimeout(clickTimer)

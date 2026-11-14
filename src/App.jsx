@@ -9,16 +9,12 @@ import Education from './components/Education.jsx'
 import Terminal from './components/Terminal.jsx'
 import Contact from './components/Contact.jsx'
 import BackToTop from './components/BackToTop.jsx'
-import NetworkMap from './components/NetworkMap.jsx'
-import CaptureToggle from './components/CaptureToggle.jsx'
 import ThreatCursor from './components/ThreatCursor.jsx'
-import { prefersReducedMotion } from './motion.js'
 import { profile } from './data/resume.js'
 
 export default function App() {
   return (
     <>
-      <NetworkMap />
       <ThreatCursor />
       <a href="#main" className="skip-link">
         Skip to content
@@ -42,7 +38,6 @@ export default function App() {
             © {new Date().getFullYear()} {profile.name}
           </p>
           <p>NIGHT//OPS interface · signal integrity maintained.</p>
-          {!prefersReducedMotion() && <CaptureToggle className="-ml-2" />}
         </div>
       </footer>
       <BackToTop />

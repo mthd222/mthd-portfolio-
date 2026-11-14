@@ -1,40 +1,6 @@
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-// Whether the visitor has paused the background capture. Remembered across
-// visits, and mirrored on <html data-capture> so CSS can stop its own loops.
-const captureListeners = new Set()
-let capturePaused = false
-try {
-  capturePaused = localStorage.getItem('capture') === 'paused'
-} catch {
-  // storage blocked: the choice just lasts for this visit
-}
-const mirrorCapture = () => {
-  document.documentElement.dataset.capture = capturePaused ? 'paused' : 'live'
-}
-mirrorCapture()
-
-export const capture = {
-  isPaused: () => capturePaused,
-  subscribe(listener) {
-    captureListeners.add(listener)
-    return () => captureListeners.delete(listener)
-  },
-  toggle() {
-    capturePaused = !capturePaused
-    try {
-      localStorage.setItem('capture', capturePaused ? 'paused' : 'live')
-    } catch {
-      // see above
-    }
-    mirrorCapture()
-    captureListeners.forEach((listener) => listener())
-  },
-}
-
-export const useCapturePaused = () => useSyncExternalStore(capture.subscribe, capture.isPaused)
 
 const callbacks = new WeakMap()
 let observer

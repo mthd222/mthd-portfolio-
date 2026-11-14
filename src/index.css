@@ -30,16 +30,6 @@
 
 :root {
   color-scheme: dark;
-  --sig-tcp: #8cff36;
-  --sig-udp: #42e8d6;
-  --sig-http: #b8ff55;
-  --sig-arp: #ffd166;
-  --sig-icmp: #ff65c7;
-  --sig-smb: #d7ff5f;
-  --sig-probe: #ff5f56;
-  --sig-open: #b8ff55;
-  --map-line: rgb(125 255 89 / 0.095);
-  --map-node: rgb(184 255 85 / 0.38);
   --accent: #b8ff55;
   --accent-soft: rgb(184 255 85 / 0.1);
   --cyan: #42e8d6;
@@ -70,16 +60,6 @@
   --color-wheat: #835f00;
   --color-shell: #08100b;
   --color-shell-ink: #c6d4c9;
-  --sig-tcp: #397300;
-  --sig-udp: #007f78;
-  --sig-http: #4d830e;
-  --sig-arp: #9b6c00;
-  --sig-icmp: #a62d82;
-  --sig-smb: #6c7600;
-  --sig-probe: #c62f2f;
-  --sig-open: #397300;
-  --map-line: rgb(16 32 22 / 0.1);
-  --map-node: rgb(16 32 22 / 0.35);
   --accent: #397300;
   --accent-soft: rgb(57 115 0 / 0.1);
   --cyan: #007f78;
@@ -97,8 +77,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 10% 4%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 24rem),
-    radial-gradient(circle at 94% 32%, color-mix(in srgb, var(--cyan) 7%, transparent), transparent 30rem),
+    radial-gradient(circle at 10% 4%, color-mix(in srgb, var(--accent) 6%, transparent), transparent 24rem),
+    radial-gradient(circle at 94% 32%, color-mix(in srgb, var(--cyan) 4%, transparent), transparent 30rem),
     var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
@@ -109,30 +89,18 @@ body {
   overflow-x: hidden;
 }
 
-body::before,
-body::after {
+body::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -3;
   pointer-events: none;
-}
-body::before {
   background-image:
-    linear-gradient(color-mix(in srgb, var(--accent) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--accent) 4%, transparent) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--accent) 2.5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent) 2.5%, transparent) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: linear-gradient(to bottom, #000, transparent 86%);
+  mask-image: linear-gradient(to bottom, #000, transparent 78%);
 }
-body::after {
-  z-index: 20;
-  opacity: 0.22;
-  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 38%, transparent), transparent);
-  background-size: 100% 7px;
-  transform: translateY(-100%);
-  animation: page-scan 9s linear infinite;
-}
-@keyframes page-scan { to { transform: translateY(100vh); } }
 
 ::selection { background: var(--accent); color: #071008; }
 
@@ -144,19 +112,6 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-paper) 68%, transparent) 14%, color-mix(in srgb, var(--color-paper) 68%, transparent) 86%, transparent);
-}
-
-.netmap {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  width: 100%;
-  height: 100vh;
-  height: 100lvh;
-  opacity: 0.72;
-  pointer-events: none;
-  filter: saturate(1.15);
-  mask-image: radial-gradient(ellipse at center, rgb(0 0 0 / 0.28) 28%, #000 100%);
 }
 
 /* Mouse-only threat reticle. Native touch and reduced-motion behavior stays intact. */
@@ -213,7 +168,6 @@ body::after {
     inset: 5px;
     border: 1px dotted color-mix(in srgb, var(--cyan) 58%, transparent);
     border-radius: 50%;
-    animation: reticle-spin 5s linear infinite;
   }
   .cursor-label {
     position: absolute;
@@ -238,7 +192,6 @@ body::after {
   .cursor-reticle[data-field="true"] { opacity: 0; }
   .cursor-core[data-field="true"] { opacity: 0; }
   .cursor-reticle[data-click="true"] { animation: reticle-pulse 280ms cubic-bezier(0.16, 1, 0.3, 1); }
-  @keyframes reticle-spin { to { rotate: 360deg; } }
   @keyframes reticle-pulse {
     0% { scale: 1; }
     45% { scale: 0.72; border-color: var(--color-alert); }
@@ -770,7 +723,6 @@ a.packet:focus-visible { outline-offset: -4px; }
   50% { opacity: 0.45; box-shadow: 0 0 0 7px transparent; }
 }
 .live-dot { animation: live 1.8s ease-in-out infinite; }
-:root[data-capture="paused"] .live-dot { animation: none; }
 
 main > section:not(.hero-section) { position: relative; }
 main > section:not(.hero-section)::before {
@@ -860,7 +812,6 @@ main > section:not(.hero-section)::before {
 
 @media (max-width: 64rem) {
   .hero-section { min-height: auto; }
-  .netmap { opacity: 0.45; }
   #root::before { background: color-mix(in srgb, var(--color-paper) 45%, transparent); }
 }
 @media (max-width: 48rem) {
@@ -875,7 +826,7 @@ main > section:not(.hero-section)::before {
   .packet { grid-template-columns: 5.5rem 1fr; font-size: 0.88rem; }
   main > section:not(.hero-section)::before { display: none; }
 }
-@media print { .netmap, body::before, body::after { display: none; } }
+@media print { body::before { display: none; } }
 @media (prefers-reduced-motion: reduce), print {
   [data-reveal] { opacity: 1; transform: none; filter: none; clip-path: none; }
   .bar-fill { transform: none; }
