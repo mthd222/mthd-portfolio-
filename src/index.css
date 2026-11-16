@@ -131,8 +131,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .atlas-map path { stroke-dasharray: 2600; animation: atlas-draw 1800ms 180ms cubic-bezier(0.16, 1, 0.3, 1) both; }
 .atlas-map circle { fill: var(--color-paper); stroke: color-mix(in srgb, var(--accent) 34%, transparent); stroke-width: 2; animation: atlas-node-in 420ms 1050ms ease-out both; }
 .atlas-labels { fill: color-mix(in srgb, var(--accent) 24%, transparent); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; animation: atlas-node-in 520ms 1250ms ease-out both; }
+.atlas-pulses { opacity: 0.38; }
+.atlas-packet { color: var(--accent); fill: currentColor; }
+.atlas-packet-cyan { color: var(--cyan); }
+.atlas-packet-violet { color: var(--violet); }
+.atlas-packet .packet-ring { fill: none; stroke: currentColor; stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: packet-breathe 2.4s ease-in-out infinite; }
 @keyframes atlas-draw { from { stroke-dashoffset: 2600; opacity: 0; } to { stroke-dashoffset: 0; opacity: 1; } }
 @keyframes atlas-node-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes packet-breathe { 0%, 100% { scale: 0.55; opacity: 0; } 45% { opacity: 0.62; } 70% { scale: 1.25; opacity: 0; } }
 
 .skip-link {
   position: fixed;
@@ -164,15 +170,21 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav-shell { max-width: var(--page-width) !important; }
 .logo-link { color: var(--color-ink); }
 .brand-lockup { display: inline-flex; align-items: center; }
-.brand-logo { display: block; width: 7.4rem; height: auto; overflow: visible; }
-.brand-badge { fill: var(--color-panel); stroke: var(--accent); stroke-width: 2.5; vector-effect: non-scaling-stroke; transition: fill 180ms ease; }
-.brand-monogram { fill: var(--accent); }
-.brand-wordmark { fill: var(--color-ink); }
-.brand-signal { fill: none; stroke: var(--cyan); stroke-width: 3; }
-.brand-alert { fill: var(--color-alert); }
-.logo-link:hover .brand-badge { fill: var(--accent); }
-.logo-link:hover .brand-monogram { fill: var(--accent-ink); }
+.brand-logo { display: block; width: 8.4rem; height: auto; overflow: visible; }
+.brand-frame { fill: color-mix(in srgb, var(--color-panel) 94%, transparent); stroke: var(--accent); stroke-width: 2.5; vector-effect: non-scaling-stroke; transition: fill 200ms ease, stroke 200ms ease; }
+.brand-frame-inner { fill: none; stroke: color-mix(in srgb, var(--violet) 50%, var(--color-rule)); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.brand-glyph { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: square; stroke-linejoin: bevel; transition: stroke 200ms ease; }
+.brand-wordmark { fill: var(--color-ink); transition: fill 200ms ease; }
+.brand-cut { fill: var(--color-paper); transition: fill 200ms ease; }
+.brand-trace { fill: none; stroke: var(--cyan); stroke-width: 1.5; stroke-dasharray: 11 5; }
+.brand-bracket { fill: none; stroke: var(--violet); stroke-width: 2.5; }
+.brand-node { fill: var(--coral); }
+.brand-node-secondary { fill: var(--cyan); }
+.logo-link:hover .brand-frame { fill: var(--accent); stroke: var(--accent); }
+.logo-link:hover .brand-glyph { stroke: var(--accent-ink); }
 .logo-link:hover .brand-wordmark { fill: var(--accent); }
+.logo-link:hover .brand-trace { animation: logo-trace 650ms linear both; }
+@keyframes logo-trace { to { stroke-dashoffset: -32; } }
 .nav-link, .mobile-nav-link {
   position: relative;
   color: var(--color-muted);
@@ -563,7 +575,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 48rem) {
   .atlas-backdrop { opacity: 0.42; }
   .atlas-backdrop::after { background: color-mix(in srgb, var(--color-paper) 56%, transparent); }
-  .brand-logo { width: 6.8rem; }
+  .brand-logo { width: 7.5rem; }
   .hero-shell, .briefing-section, .content-section { padding-inline: 1.1rem; }
   .hero-title { max-width: none; font-size: clamp(4rem, 21vw, 6.2rem); line-height: 0.82; letter-spacing: -0.085em; }
   .hero-name-secondary { gap: 0.65rem; }
@@ -627,4 +639,5 @@ button, a { -webkit-tap-highlight-color: transparent; }
   [data-reveal] { opacity: 1; transform: none; filter: none; }
   .content-section::before, .section-number, .atlas-backdrop svg { animation: none !important; transform: none !important; }
   .content-section::after { transform: scaleY(1); }
+  .atlas-pulses { display: none; }
 }

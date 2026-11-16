@@ -1,12 +1,16 @@
 export default function Logo({ className = '' }) {
   return (
     <span className={`brand-lockup ${className}`}>
-      <svg className="brand-logo" viewBox="0 0 200 64" aria-hidden="true" focusable="false">
-        <path className="brand-badge" d="M6 12 18 2h42l10 10v40L60 62H18L6 50Z" />
-        <path className="brand-monogram" d="M17 47V17h8l12 15 12-15h8v30h-8V29L37 43 25 29v18Z" />
-        <path className="brand-wordmark" fillRule="evenodd" d="M78 17h32v8H98v22h-8V25H78Zm38 0h8v11h12V17h8v30h-8V36h-12v11h-8Zm35 0h13c19 0 27 7 27 15s-8 15-27 15h-13Zm9 8v14h5c11 0 17-2 17-7s-6-7-17-7Z" />
-        <path className="brand-signal" d="M13 54h49M78 54h66" />
-        <circle className="brand-alert" cx="61" cy="11" r="3.5" />
+      <svg className="brand-logo" viewBox="0 0 232 64" aria-hidden="true" focusable="false">
+        <path className="brand-frame" d="M4 16 16 4h40l12 12v32L56 60H16L4 48Z" />
+        <path className="brand-frame-inner" d="M11 19 19 11h34l8 8v26l-8 8H19l-8-8Z" />
+        <path className="brand-glyph" d="M18 44V21l15 17 15-17v23" />
+        <path className="brand-wordmark" fillRule="evenodd" d="M79 14h35v9h-13v27h-9V23H79Zm42 0h9v13h15V14h9v36h-9V36h-15v14h-9Zm42 0h18c18 0 28 6 28 18s-10 18-28 18h-18Zm9 9v18h9c12 0 18-2 18-9s-6-9-18-9Z" />
+        <path className="brand-cut" d="M88 31h20v3H88Zm48 0h17v3h-17Zm34 0h35v3h-35Z" />
+        <path className="brand-trace" d="M14 32h12m14 0h24m14 0h10m20 0h28m17 0h18m34 0h17" />
+        <path className="brand-bracket" d="M217 17h8v30h-8" />
+        <circle className="brand-node" cx="68" cy="16" r="3.5" />
+        <circle className="brand-node brand-node-secondary" cx="226" cy="32" r="2.5" />
       </svg>
     </span>
   )

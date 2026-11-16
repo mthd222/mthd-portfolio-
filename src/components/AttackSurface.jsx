@@ -40,6 +40,23 @@ export default function AttackSurface() {
           <text x="282" y="705">ATTACK_SURFACE</text>
           <text x="862" y="705">CONTROL_PLANE</text>
         </g>
+        <g className="atlas-pulses">
+          <g className="atlas-packet">
+            <circle className="packet-ring" r="10" />
+            <circle r="3.5" />
+            <animateMotion dur="18s" repeatCount="indefinite" path="M-60 245H210L310 145H520L610 235H835L965 105H1260L1370 215H1660" />
+          </g>
+          <g className="atlas-packet atlas-packet-cyan">
+            <circle className="packet-ring" r="10" />
+            <circle r="3.5" />
+            <animateMotion begin="-8s" dur="23s" repeatCount="indefinite" path="M80 850L255 675H450L560 785H735L845 675H1025L1170 530H1440L1660 310" />
+          </g>
+          <g className="atlas-packet atlas-packet-violet">
+            <circle className="packet-ring" r="10" />
+            <circle r="3.5" />
+            <animateMotion begin="-13s" dur="27s" repeatCount="indefinite" path="M520 145V340L680 500V785H845L1025 675L1170 530" />
+          </g>
+        </g>
       </svg>
     </div>
   )
