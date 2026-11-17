@@ -1,5 +1,6 @@
 import { profile, experience, education, research, projects } from '../data/resume.js'
 import Icon from './Icons.jsx'
+import Logo from './Logo.jsx'
 
 const proof = [
   { value: `${experience.length}`, label: 'Security internships', detail: 'SOC, SIEM & XDR' },
@@ -62,9 +63,7 @@ export default function Hero() {
             <span>BLR / IN</span>
           </div>
           <div className="operator-mark" aria-hidden="true">
-            <span>M</span>
-            <strong>THD</strong>
-            <i>222</i>
+            <Logo className="operator-brand" />
           </div>
           <div className="operator-status">
             <span>CURRENT ASSIGNMENT</span>

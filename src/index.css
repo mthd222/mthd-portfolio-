@@ -170,19 +170,21 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .nav-shell { max-width: var(--page-width) !important; }
 .logo-link { color: var(--color-ink); }
 .brand-lockup { display: inline-flex; align-items: center; }
-.brand-logo { display: block; width: 8.4rem; height: auto; overflow: visible; }
-.brand-frame { fill: color-mix(in srgb, var(--color-panel) 94%, transparent); stroke: var(--accent); stroke-width: 2.5; vector-effect: non-scaling-stroke; transition: fill 200ms ease, stroke 200ms ease; }
-.brand-frame-inner { fill: none; stroke: color-mix(in srgb, var(--violet) 50%, var(--color-rule)); stroke-width: 1; vector-effect: non-scaling-stroke; }
-.brand-glyph { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: square; stroke-linejoin: bevel; transition: stroke 200ms ease; }
-.brand-wordmark { fill: var(--color-ink); transition: fill 200ms ease; }
-.brand-cut { fill: var(--color-paper); transition: fill 200ms ease; }
-.brand-trace { fill: none; stroke: var(--cyan); stroke-width: 1.5; stroke-dasharray: 11 5; }
-.brand-bracket { fill: none; stroke: var(--violet); stroke-width: 2.5; }
+.brand-logo { display: block; width: 9rem; height: auto; overflow: visible; }
+.brand-code-frame { fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linecap: square; transition: stroke 200ms ease; }
+.brand-code-label { fill: var(--cyan); font-family: var(--font-mono); font-size: 7px; font-weight: 700; letter-spacing: 0.08em; }
+.brand-code-label-end { fill: var(--violet); font-size: 6px; }
+.brand-letter { transition: fill 200ms ease; }
+.brand-letter-accent { fill: var(--accent); }
+.brand-letter-core { fill: var(--color-ink); }
+.brand-trace { fill: none; stroke: var(--cyan); stroke-width: 1.4; stroke-dasharray: 8 5; }
+.brand-circuit { fill: none; stroke: color-mix(in srgb, var(--violet) 76%, var(--color-rule)); stroke-width: 1.5; }
 .brand-node { fill: var(--coral); }
 .brand-node-secondary { fill: var(--cyan); }
-.logo-link:hover .brand-frame { fill: var(--accent); stroke: var(--accent); }
-.logo-link:hover .brand-glyph { stroke: var(--accent-ink); }
-.logo-link:hover .brand-wordmark { fill: var(--accent); }
+.brand-node-tertiary { fill: var(--violet); }
+.logo-link:hover .brand-code-frame { stroke: var(--cyan); }
+.logo-link:hover .brand-letter-accent { fill: var(--coral); }
+.logo-link:hover .brand-letter-core { fill: var(--accent); }
 .logo-link:hover .brand-trace { animation: logo-trace 650ms linear both; }
 @keyframes logo-trace { to { stroke-dashoffset: -32; } }
 .nav-link, .mobile-nav-link {
@@ -289,10 +291,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .operator-panel::before { content: ""; position: absolute; inset: -45% 0 auto; z-index: 3; height: 38%; pointer-events: none; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent) 10%, transparent), transparent); animation: operator-scan 1250ms 720ms cubic-bezier(0.16, 1, 0.3, 1) both; }
 @keyframes operator-scan { to { transform: translateY(480%); opacity: 0; } }
 .operator-head { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 1rem; border-bottom: 1px solid var(--color-rule); color: var(--color-muted); font-family: var(--font-mono); font-size: 0.61rem; letter-spacing: 0.08em; }
-.operator-mark { position: relative; display: flex; align-items: baseline; min-height: 12rem; padding: 2rem 1.3rem 1.1rem; overflow: hidden; color: var(--accent); font-family: var(--font-display); font-stretch: 70%; line-height: 0.8; }
-.operator-mark span { font-size: clamp(5.5rem, 9vw, 8.5rem); font-weight: 800; }
-.operator-mark strong { color: transparent; font-size: clamp(3rem, 5vw, 5rem); -webkit-text-stroke: 1px var(--accent); writing-mode: vertical-rl; transform: rotate(180deg); }
-.operator-mark i { position: absolute; right: 1rem; bottom: 1rem; color: var(--cyan); font-size: 1rem; font-style: normal; letter-spacing: 0.2em; }
+.operator-mark { position: relative; display: grid; min-height: 12rem; place-items: center; padding: 2.4rem 1.5rem; overflow: hidden; }
+.operator-mark::before { content: "PRIMARY IDENTITY // MTHD222"; position: absolute; left: 1rem; bottom: 0.65rem; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.08em; }
+.operator-brand { width: 100%; justify-content: center; }
+.operator-brand .brand-logo { width: min(100%, 20rem); filter: drop-shadow(0 0 18px color-mix(in srgb, var(--accent) 8%, transparent)); }
 .operator-status { padding: 1rem 1.2rem 1.2rem; border-block: 1px solid var(--color-rule); }
 .operator-status > span { color: var(--accent); font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.09em; }
 .operator-status strong { display: block; margin-top: 0.45rem; font-size: 1.2rem; }
@@ -575,7 +577,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 48rem) {
   .atlas-backdrop { opacity: 0.42; }
   .atlas-backdrop::after { background: color-mix(in srgb, var(--color-paper) 56%, transparent); }
-  .brand-logo { width: 7.5rem; }
+  .brand-logo { width: 8rem; }
   .hero-shell, .briefing-section, .content-section { padding-inline: 1.1rem; }
   .hero-title { max-width: none; font-size: clamp(4rem, 21vw, 6.2rem); line-height: 0.82; letter-spacing: -0.085em; }
   .hero-name-secondary { gap: 0.65rem; }
@@ -585,7 +587,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .hero-actions { display: grid; grid-template-columns: 1fr; }
   .btn { width: 100%; }
   .operator-panel { width: 100%; max-width: 100%; }
-  .operator-mark { min-height: 10rem; }
+  .operator-mark { min-height: 10rem; padding-inline: 1rem; }
+  .operator-brand .brand-logo { width: min(100%, 18rem); }
   .focus-grid { grid-template-columns: 1fr; }
   .focus-grid > div { border-left: 0; border-top: 1px solid var(--color-rule); }
   .proof-grid { grid-template-columns: repeat(2, 1fr); }

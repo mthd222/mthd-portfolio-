@@ -1,16 +1,20 @@
 export default function Logo({ className = '' }) {
   return (
     <span className={`brand-lockup ${className}`}>
-      <svg className="brand-logo" viewBox="0 0 232 64" aria-hidden="true" focusable="false">
-        <path className="brand-frame" d="M4 16 16 4h40l12 12v32L56 60H16L4 48Z" />
-        <path className="brand-frame-inner" d="M11 19 19 11h34l8 8v26l-8 8H19l-8-8Z" />
-        <path className="brand-glyph" d="M18 44V21l15 17 15-17v23" />
-        <path className="brand-wordmark" fillRule="evenodd" d="M79 14h35v9h-13v27h-9V23H79Zm42 0h9v13h15V14h9v36h-9V36h-15v14h-9Zm42 0h18c18 0 28 6 28 18s-10 18-28 18h-18Zm9 9v18h9c12 0 18-2 18-9s-6-9-18-9Z" />
-        <path className="brand-cut" d="M88 31h20v3H88Zm48 0h17v3h-17Zm34 0h35v3h-35Z" />
-        <path className="brand-trace" d="M14 32h12m14 0h24m14 0h10m20 0h28m17 0h18m34 0h17" />
-        <path className="brand-bracket" d="M217 17h8v30h-8" />
-        <circle className="brand-node" cx="68" cy="16" r="3.5" />
-        <circle className="brand-node brand-node-secondary" cx="226" cy="32" r="2.5" />
+      <svg className="brand-logo" viewBox="0 0 256 64" aria-hidden="true" focusable="false">
+        <path className="brand-code-frame" d="M24 12H10v40h14M232 12h14v40h-14" />
+        <text className="brand-code-label" x="8" y="9">01</text>
+        <text className="brand-code-label brand-code-label-end" x="224" y="61">RUN</text>
+        <path className="brand-letter brand-letter-accent" d="M34 49V15h9l14 16 14-16h9v34h-9V29L57 44 43 29v20Z" />
+        <path className="brand-letter brand-letter-core" d="M84 15h36v9h-13v25H97V24H84Z" />
+        <path className="brand-letter brand-letter-core" d="M124 15h10v12h15V15h10v34h-10V36h-15v13h-10Z" />
+        <path className="brand-letter brand-letter-accent" fillRule="evenodd" d="M166 15h18c18 0 28 6 28 17s-10 17-28 17h-18Zm10 9v16h8c11 0 18-2 18-8s-7-8-18-8Z" />
+        <path className="brand-trace" d="M18 32h13m49 0h8m24 0h16m29 0h13m40 0h28" />
+        <path className="brand-circuit" d="M30 21h-8v-7M30 43h-8v7M216 20h9v-6h8M216 44h9v6h8" />
+        <circle className="brand-node" cx="22" cy="14" r="2.5" />
+        <circle className="brand-node brand-node-secondary" cx="233" cy="14" r="2.5" />
+        <circle className="brand-node brand-node-tertiary" cx="22" cy="50" r="2.5" />
+        <circle className="brand-node brand-node-secondary" cx="233" cy="50" r="2.5" />
       </svg>
     </span>
   )
