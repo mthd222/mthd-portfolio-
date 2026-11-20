@@ -193,6 +193,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-family: var(--font-mono);
   letter-spacing: -0.02em;
 }
+.nav-link { white-space: nowrap; }
 .nav-link:hover, .mobile-nav-link:hover { color: var(--color-ink); }
 .nav-link.tinted, .mobile-nav-link.tinted { color: var(--tint); background: color-mix(in srgb, var(--tint) 8%, transparent); }
 .nav-link.tinted::after {
@@ -317,6 +318,36 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .proof-item dt { color: var(--color-muted); font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; }
 .proof-item dd { margin: 0.3rem 0 0; font-family: var(--font-display); font-size: clamp(1.65rem, 3vw, 2.5rem); font-weight: 760; line-height: 1; }
 .proof-item p { margin: 0.35rem 0 0; color: var(--color-muted); font-size: 0.82rem; }
+
+/* Active-defense motion brief */
+.motion-layout { display: grid; grid-template-columns: minmax(17rem, 0.7fr) minmax(0, 1.55fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+.motion-copy { padding-top: 0.35rem; }
+.motion-kicker { margin: 0 0 1rem; color: var(--tint); font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; }
+.motion-copy > h3 { max-width: 11ch; margin: 0; font-family: var(--font-display); font-stretch: 75%; font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 760; letter-spacing: -0.055em; line-height: 0.98; text-transform: uppercase; }
+.motion-copy > p:not(.motion-kicker) { max-width: 38rem; margin: 1.35rem 0 0; color: var(--color-muted); }
+.motion-sequence { margin: 2rem 0 0; padding: 0; border-block: 1px solid var(--color-rule); list-style: none; }
+.motion-sequence li { display: grid; grid-template-columns: 2.15rem minmax(0, 1fr) auto; gap: 0.75rem; align-items: center; min-height: 4.7rem; padding: 0.65rem 0; border-top: 1px solid var(--color-rule); }
+.motion-sequence li:first-child { border-top: 0; }
+.motion-sequence li > span { color: var(--tint); font-family: var(--font-mono); font-size: 0.65rem; }
+.motion-sequence strong { display: block; font-size: 0.94rem; }
+.motion-sequence p { margin: 0.12rem 0 0; color: var(--color-muted); font-size: 0.78rem; line-height: 1.35; }
+.motion-sequence i { color: color-mix(in srgb, var(--tint) 72%, var(--color-muted)); font-family: var(--font-mono); font-size: 0.6rem; font-style: normal; letter-spacing: 0.08em; }
+.motion-figure { min-width: 0; margin: 0; }
+.motion-screen { position: relative; overflow: hidden; border: 1px solid color-mix(in srgb, var(--tint) 38%, var(--color-rule)); background: #08070d; box-shadow: 0 2.5rem 7rem var(--shadow); clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px)); }
+.motion-screen::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, color-mix(in srgb, var(--tint) 5%, transparent), transparent 28%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.025); }
+.motion-screen video { display: block; width: 100%; aspect-ratio: 1280 / 760; background: #08070d; object-fit: cover; }
+.motion-play { position: absolute; left: 50%; top: 50%; z-index: 2; display: grid; grid-template-columns: auto auto; align-items: center; gap: 0.1rem 0.7rem; min-width: 12.5rem; min-height: 4.2rem; padding: 0.8rem 1rem; border: 1px solid color-mix(in srgb, var(--tint) 62%, white); background: color-mix(in srgb, var(--color-paper) 82%, transparent); color: var(--color-ink); text-align: left; translate: -50% -50%; backdrop-filter: blur(14px); cursor: pointer; clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
+.motion-play:hover { background: var(--tint); color: var(--accent-ink); transform: translateY(-2px); }
+.motion-play svg { grid-row: 1 / 3; color: var(--tint); }
+.motion-play:hover svg { color: currentColor; }
+.motion-play span { font-family: var(--font-mono); font-size: 0.76rem; font-weight: 750; text-transform: uppercase; }
+.motion-play small { color: var(--color-muted); font-family: var(--font-mono); font-size: 0.62rem; }
+.motion-play:hover small { color: currentColor; }
+.motion-corner { position: absolute; z-index: 1; width: 3.2rem; height: 3.2rem; pointer-events: none; opacity: 0.68; }
+.motion-corner-top { left: 0.85rem; top: 0.85rem; border-left: 1px solid var(--tint); border-top: 1px solid var(--tint); }
+.motion-corner-bottom { right: 0.85rem; bottom: 0.85rem; border-right: 1px solid var(--cyan); border-bottom: 1px solid var(--cyan); }
+.motion-screen.is-playing .motion-corner { opacity: 0.24; }
+.motion-figure figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: 0.8rem 0.15rem 0; color: var(--color-muted); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; }
 
 /* Profile briefing */
 .briefing-section { max-width: var(--page-width); margin: 0 auto; padding: clamp(4rem, 8vw, 8rem) 2rem; }
@@ -560,6 +591,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width: 64rem) {
   .hero-shell { min-height: auto; padding-top: 5rem; }
   .hero-grid { grid-template-columns: 1fr; }
+  .motion-layout { grid-template-columns: 1fr; }
+  .motion-copy > h3 { max-width: 16ch; }
+  .motion-sequence { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .motion-sequence li:nth-child(even) { padding-left: 1rem; border-left: 1px solid var(--color-rule); }
+  .motion-sequence li:nth-child(2) { border-top: 0; }
   .operator-panel { max-width: 36rem; }
   .brief-grid { grid-template-columns: 1fr; }
   .brief-principles { grid-column: 1; }
@@ -580,6 +616,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .brand-logo { width: 8rem; }
   .hero-shell, .briefing-section, .content-section { padding-inline: 1.1rem; }
   .hero-title { max-width: none; font-size: clamp(4rem, 21vw, 6.2rem); line-height: 0.82; letter-spacing: -0.085em; }
+  .motion-copy > h3 { font-size: clamp(2rem, 11vw, 3.2rem); }
+  .motion-sequence { display: block; }
+  .motion-sequence li:nth-child(even) { padding-left: 0; border-left: 0; }
+  .motion-sequence li:nth-child(2) { border-top: 1px solid var(--color-rule); }
+  .motion-play { min-width: 10.5rem; min-height: 3.6rem; }
+  .motion-figure figcaption { display: grid; }
   .hero-name-secondary { gap: 0.65rem; }
   .hero-name-secondary strong { font-size: 0.58em; }
   .hero-name-secondary i { font-size: 0.07em; }

@@ -1,6 +1,7 @@
 // Page sections in order. `tint` names a colour token from index.css: the row
 // colour that section carries in the nav, its heading band, and the hero summary.
 export const SECTIONS = [
+  { id: 'motion', label: 'Field reel', tint: 'coral' },
   { id: 'projects', label: 'Case files', tint: 'acid' },
   { id: 'experience', label: 'Experience', tint: 'cyan' },
   { id: 'methodology', label: 'Method', tint: 'amber' },
